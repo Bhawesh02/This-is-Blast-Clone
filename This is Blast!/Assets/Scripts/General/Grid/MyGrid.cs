@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class MyGrid : MonoBehaviour
 {
     [SerializeField] private GridData m_gridData;
     
@@ -24,7 +24,7 @@ public class Grid : MonoBehaviour
             {
                 slotSpawnPosition = currentPosition + GetPostionIncrementBasedOnAxis(rowIndex, columnIndex);
                 newSlot = Instantiate(m_gridData.slotPrefab, slotSpawnPosition, Quaternion.identity, transform);
-                newSlot.name = $"Slot {rowIndex}, {columnIndex}";
+                newSlot.Init(new(rowIndex, columnIndex));
                 m_spawnedSlots.Add(newSlot);
             }
         }
@@ -36,7 +36,8 @@ public class Grid : MonoBehaviour
         {
             AxisCombination.XY => new Vector3(rowIndex + (rowIndex * m_gridData.slotSpacing), columnIndex + (columnIndex * m_gridData.slotSpacing), 0f),
             AxisCombination.XZ => new Vector3(rowIndex+ (rowIndex * m_gridData.slotSpacing), 0f, columnIndex + (columnIndex * m_gridData.slotSpacing)),
-            AxisCombination.YZ => new Vector3(0f, rowIndex+ (rowIndex * m_gridData.slotSpacing), columnIndex + (columnIndex * m_gridData.slotSpacing))
+            AxisCombination.YZ => new Vector3(0f, rowIndex+ (rowIndex * m_gridData.slotSpacing), columnIndex + (columnIndex * m_gridData.slotSpacing)),
+            _ => Vector3.zero
         };
     }
 

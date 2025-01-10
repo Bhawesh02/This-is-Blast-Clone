@@ -1,23 +1,23 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(Grid))]
+[CustomEditor(typeof(MyGrid))]
 public class GridEditor : Editor
 {
-    private const string SPAWN_GRID_BUTTON_TEXT = "Spawn Grid";
-    private const string CLEAR_GRID_BUTTON_TEXT = "Clear Grid";
+    private const string SPAWN_GRID_BUTTON_TEXT = "Spawn MyGrid";
+    private const string CLEAR_GRID_BUTTON_TEXT = "Clear MyGrid";
     
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        Grid grid = (Grid)target;
+        MyGrid myGrid = (MyGrid)target;
         if (GUILayout.Button(SPAWN_GRID_BUTTON_TEXT))
         {
-            grid.SpawnGrid();
+            myGrid.SpawnGrid();
         }
         if (GUILayout.Button(CLEAR_GRID_BUTTON_TEXT))
         {
-            grid.ClearGrid();
+            myGrid.ClearGrid();
         }
     }
 }

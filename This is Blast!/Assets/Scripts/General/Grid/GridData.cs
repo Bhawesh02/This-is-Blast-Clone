@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Grid Data", menuName = "Grid/New Grid Data")]
+[CreateAssetMenu(fileName = "New MyGrid Data", menuName = "MyGrid/New MyGrid Data")]
 public class GridData : ScriptableObject
 {
     public AxisCombination axisCombination;
