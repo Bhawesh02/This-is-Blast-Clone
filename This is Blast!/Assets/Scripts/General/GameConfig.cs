@@ -30,6 +30,10 @@ public class GameConfig : GenericConfig<GameConfig>
     
     [Header("Shooter")]
     public ShooterElementData shooterElementData;
+    public float shooterMoveSpeed = 5f;
+    public Ease shooterMoveEase;
+    public float shooterWaitingStateYIncrement = 0.2f;
+
     public Projectile projectilePrefab;
 
     public Material GetBrickMaterial(BrickColors brickColor)

@@ -2,15 +2,15 @@
 
 public abstract class Slot : MonoBehaviour, IHandleInput
 {
-    protected Vector2 m_coord;
+    protected Vector2Int m_coord;
     protected SlotElement m_slotElement;
     protected bool m_isOccupied;
     protected MyGrid m_grid;
     
-    public Vector2 Coord => m_coord;
+    public Vector2Int Coord => m_coord;
     public bool IsOccupied => m_isOccupied;
     
-    public virtual void Config(Vector2 coord, MyGrid grid)
+    public virtual void Config(Vector2Int coord, MyGrid grid)
     {
         m_coord = coord;
         gameObject.name = $"Slot {coord.x}, {coord.y}";
