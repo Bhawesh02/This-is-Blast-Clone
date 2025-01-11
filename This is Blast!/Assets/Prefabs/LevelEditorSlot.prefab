@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6221381583050287725}
   - component: {fileID: 1930383711329652333}
   m_Layer: 0
-  m_Name: Slot
+  m_Name: LevelEditorSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

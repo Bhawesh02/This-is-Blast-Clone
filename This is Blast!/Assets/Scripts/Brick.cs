@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DG.Tweening;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class Brick : SlotElement
@@ -7,23 +11,29 @@ public class Brick : SlotElement
     
     private BrickConfigData m_brickConfigData;
     private List<MeshRenderer> m_modlesSpawned = new List<MeshRenderer>();
-    private bool m_canHandleInput = true;
+    private Vector2 m_nextSlotCoord;
     
     public BrickElementData BrickElementData => (BrickElementData)m_elementData;
+    public BrickConfigData BrickConfigData => m_brickConfigData;
 
-    public void SetCanHandleInput(bool value)
+    private void Awake()
     {
-        m_canHandleInput = value;
+        GameplayEvents.OnBrickSlotEmpty += HandleOnBrickSlotEmpty;
     }
-    
-    public void Config(BrickConfigData brickConfigData, Slot slot)
+
+    private void OnDestroy()
     {
-        m_occupiedSlot = slot;
+        GameplayEvents.OnBrickSlotEmpty -= HandleOnBrickSlotEmpty;
+    }
+
+    public void Config(BrickConfigData brickConfigData, Slot slot, MyGrid grid)
+    {
+        Config(GameConfig.Instance.brickElementData, slot, grid);
         m_brickConfigData = brickConfigData;
-        m_elementData = GameConfig.Instance.brickElementData;
         transform.SetParent(m_occupiedSlot.transform);
         transform.localPosition = m_elementData.positionOnGrid;
         ConfigModels();
+        CalculateNextSlotCoord();
     }
 
     private void ConfigModels()
@@ -60,20 +70,75 @@ public class Brick : SlotElement
             meshRenderer.material = materialToApply;
         }
     }
-    public override void HandleClick()
+    
+    private void CalculateNextSlotCoord()
     {
-        if (!m_canHandleInput)
+        Vector2 currentCoord = m_occupiedSlot.Coord;
+        m_nextSlotCoord = currentCoord;
+        if (currentCoord.y == 0)
         {
             return;
         }
-        //TODO
+        m_nextSlotCoord.y -= 1;
+    }
+    public override void HandleClick()
+    {
+        //Nothing
     }
     public override void HandleDrag()
     {
-        if (!m_canHandleInput)
+        //Nothing
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Projectile projectile = other.gameObject.GetComponent<Projectile>();
+        if (!projectile)
         {
             return;
         }
-        //TODO
+        HandleOnProjectileCollision(projectile);
+    }
+    
+    private void HandleOnProjectileCollision(Projectile projectile)
+    {
+        if (projectile.BrickColorToHit != m_brickConfigData.brickColor)
+        {
+            return;
+        }
+
+        int lastIndex = m_modlesSpawned.Count - 1;
+        Transform nextModleTransform = m_modlesSpawned[lastIndex].transform;
+        m_modlesSpawned.RemoveAt(lastIndex);
+        nextModleTransform.DOScale(Vector3.zero, GameConfig.Instance.brickScaleDownDuration)
+            .SetEase(GameConfig.Instance.brickScaleDownEase)
+            .OnComplete(() =>
+        {
+            if (m_modlesSpawned.Count == 0)
+            {
+                m_occupiedSlot.EmptySlot();
+                Destroy(gameObject);
+            }
+        });
+        m_brickConfigData.brickStrenght--;
+    }
+    
+    private void HandleOnBrickSlotEmpty(Vector2 coord)
+    {
+        if (m_nextSlotCoord != coord || m_occupiedSlot.Coord == coord)
+        {
+            return;
+        }
+        Slot newSlot = m_grid.GetSlot(coord);
+        if (newSlot.IsOccupied)
+        {
+            return;
+        }
+        m_occupiedSlot.EmptySlot();
+        newSlot.OccupySlot(this);
+        Vector3 localPosition = transform.localPosition;
+        transform.SetParent(newSlot.transform);
+        transform.DOLocalMove(localPosition, GameConfig.Instance.brickMoveDownDuration).SetEase(GameConfig.Instance.brickMoveDownEase);
+        CalculateNextSlotCoord();
     }
 }

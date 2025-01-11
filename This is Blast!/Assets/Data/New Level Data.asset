@@ -14,29 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brickConfigDatas:
   - slotCoord: {x: 0, y: 0}
-    brickStrenght: 0
-    brickColor: 0
+    brickStrenght: 2
+    brickColor: 3
   - slotCoord: {x: 0, y: 1}
     brickStrenght: 1
     brickColor: 2
   - slotCoord: {x: 0, y: 2}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 1
   - slotCoord: {x: 0, y: 3}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 0
   - slotCoord: {x: 0, y: 4}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 0, y: 5}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 0, y: 6}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 0, y: 7}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 0, y: 8}
     brickStrenght: 1
     brickColor: 0
@@ -44,29 +44,29 @@ MonoBehaviour:
     brickStrenght: 1
     brickColor: 0
   - slotCoord: {x: 1, y: 0}
-    brickStrenght: 0
-    brickColor: 0
+    brickStrenght: 1
+    brickColor: 3
   - slotCoord: {x: 1, y: 1}
     brickStrenght: 1
     brickColor: 2
   - slotCoord: {x: 1, y: 2}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 1
   - slotCoord: {x: 1, y: 3}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 0
   - slotCoord: {x: 1, y: 4}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 1, y: 5}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 1, y: 6}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 1, y: 7}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 1, y: 8}
     brickStrenght: 1
     brickColor: 0
@@ -74,29 +74,29 @@ MonoBehaviour:
     brickStrenght: 1
     brickColor: 0
   - slotCoord: {x: 2, y: 0}
-    brickStrenght: 0
-    brickColor: 0
+    brickStrenght: 1
+    brickColor: 3
   - slotCoord: {x: 2, y: 1}
     brickStrenght: 1
     brickColor: 2
   - slotCoord: {x: 2, y: 2}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 1
   - slotCoord: {x: 2, y: 3}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 0
   - slotCoord: {x: 2, y: 4}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 2, y: 5}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 2, y: 6}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 2, y: 7}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 2, y: 8}
     brickStrenght: 1
     brickColor: 0
@@ -104,29 +104,29 @@ MonoBehaviour:
     brickStrenght: 1
     brickColor: 0
   - slotCoord: {x: 3, y: 0}
-    brickStrenght: 0
-    brickColor: 0
+    brickStrenght: 1
+    brickColor: 3
   - slotCoord: {x: 3, y: 1}
     brickStrenght: 1
     brickColor: 2
   - slotCoord: {x: 3, y: 2}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 1
   - slotCoord: {x: 3, y: 3}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 0
   - slotCoord: {x: 3, y: 4}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 3, y: 5}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 3, y: 6}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 3, y: 7}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 3, y: 8}
     brickStrenght: 1
     brickColor: 0
@@ -134,29 +134,29 @@ MonoBehaviour:
     brickStrenght: 1
     brickColor: 0
   - slotCoord: {x: 4, y: 0}
-    brickStrenght: 0
-    brickColor: 0
+    brickStrenght: 1
+    brickColor: 3
   - slotCoord: {x: 4, y: 1}
     brickStrenght: 1
     brickColor: 2
   - slotCoord: {x: 4, y: 2}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 1
   - slotCoord: {x: 4, y: 3}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 0
   - slotCoord: {x: 4, y: 4}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 4, y: 5}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 4, y: 6}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 4, y: 7}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 4, y: 8}
     brickStrenght: 1
     brickColor: 0
@@ -164,29 +164,29 @@ MonoBehaviour:
     brickStrenght: 1
     brickColor: 0
   - slotCoord: {x: 5, y: 0}
-    brickStrenght: 0
-    brickColor: 0
+    brickStrenght: 1
+    brickColor: 3
   - slotCoord: {x: 5, y: 1}
     brickStrenght: 1
     brickColor: 2
   - slotCoord: {x: 5, y: 2}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 1
   - slotCoord: {x: 5, y: 3}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 1
   - slotCoord: {x: 5, y: 4}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 5, y: 5}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 5, y: 6}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 5, y: 7}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 5, y: 8}
     brickStrenght: 1
     brickColor: 0
@@ -194,29 +194,29 @@ MonoBehaviour:
     brickStrenght: 1
     brickColor: 0
   - slotCoord: {x: 6, y: 0}
-    brickStrenght: 0
-    brickColor: 0
+    brickStrenght: 1
+    brickColor: 3
   - slotCoord: {x: 6, y: 1}
     brickStrenght: 1
     brickColor: 2
   - slotCoord: {x: 6, y: 2}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 1
   - slotCoord: {x: 6, y: 3}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 1
   - slotCoord: {x: 6, y: 4}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 6, y: 5}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 6, y: 6}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 6, y: 7}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 6, y: 8}
     brickStrenght: 1
     brickColor: 0
@@ -224,29 +224,29 @@ MonoBehaviour:
     brickStrenght: 1
     brickColor: 0
   - slotCoord: {x: 7, y: 0}
-    brickStrenght: 0
-    brickColor: 0
-  - slotCoord: {x: 7, y: 1}
     brickStrenght: 1
     brickColor: 3
+  - slotCoord: {x: 7, y: 1}
+    brickStrenght: 1
+    brickColor: 2
   - slotCoord: {x: 7, y: 2}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 1
   - slotCoord: {x: 7, y: 3}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 0
   - slotCoord: {x: 7, y: 4}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 7, y: 5}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 7, y: 6}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 7, y: 7}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 7, y: 8}
     brickStrenght: 1
     brickColor: 0
@@ -254,63 +254,84 @@ MonoBehaviour:
     brickStrenght: 1
     brickColor: 0
   - slotCoord: {x: 8, y: 0}
-    brickStrenght: 0
-    brickColor: 0
+    brickStrenght: 1
+    brickColor: 3
   - slotCoord: {x: 8, y: 1}
     brickStrenght: 1
-    brickColor: 3
+    brickColor: 2
   - slotCoord: {x: 8, y: 2}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 1
   - slotCoord: {x: 8, y: 3}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 0
   - slotCoord: {x: 8, y: 4}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 8, y: 5}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 8, y: 6}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 8, y: 7}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 8, y: 8}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 8, y: 9}
     brickStrenght: 1
-    brickColor: 1
-  - slotCoord: {x: 9, y: 0}
-    brickStrenght: 0
     brickColor: 0
-  - slotCoord: {x: 9, y: 1}
+  - slotCoord: {x: 9, y: 0}
     brickStrenght: 1
     brickColor: 3
+  - slotCoord: {x: 9, y: 1}
+    brickStrenght: 1
+    brickColor: 2
   - slotCoord: {x: 9, y: 2}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 1
   - slotCoord: {x: 9, y: 3}
     brickStrenght: 1
-    brickColor: 2
+    brickColor: 0
   - slotCoord: {x: 9, y: 4}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 9, y: 5}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 9, y: 6}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 9, y: 7}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 9, y: 8}
     brickStrenght: 1
-    brickColor: 1
+    brickColor: 0
   - slotCoord: {x: 9, y: 9}
     brickStrenght: 1
-    brickColor: 1
-  shooterSpawnRowDatas: []
+    brickColor: 0
+  shooterSpawnRowDatas:
+  - shooterRowData:
+    - brickColor: 0
+      projectileCount: 0
+    - brickColor: 0
+      projectileCount: 0
+    - brickColor: 0
+      projectileCount: 0
+  - shooterRowData:
+    - brickColor: 0
+      projectileCount: 0
+    - brickColor: 0
+      projectileCount: 0
+    - brickColor: 0
+      projectileCount: 0
+  - shooterRowData:
+    - brickColor: 0
+      projectileCount: 0
+    - brickColor: 0
+      projectileCount: 0
+    - brickColor: 0
+      projectileCount: 0

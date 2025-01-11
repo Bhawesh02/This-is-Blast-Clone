@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14a423ad8bc046ada4ff9ec5c0dc9efa, type: 3}
-  m_Name: New Grid Data
+  m_Script: {fileID: 11500000, guid: 753bdb918c6038142acddbd7aae6958f, type: 3}
+  m_Name: NaughtyScriptableObject
   m_EditorClassIdentifier: 
-  axisCombination: 1
-  gridSize: {x: 10, y: 10}
-  slotSpacing: 0.1
-  slotPrefab: {fileID: 6221381583050287725, guid: 5f08611642d02da4b9e8ab1806c08bde,
-    type: 3}
+  listA:
+  - {fileID: 11400000, guid: 149474eb879a6a641b560ca17d48712f, type: 2}
+  - {fileID: 11400000, guid: 149474eb879a6a641b560ca17d48712f, type: 2}

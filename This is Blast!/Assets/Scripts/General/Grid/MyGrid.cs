@@ -30,7 +30,7 @@ public class MyGrid : MonoBehaviour
             {
                 slotSpawnPosition = currentPosition + GetPostionIncrementBasedOnAxis(rowIndex, columnIndex);
                 newSlot = Instantiate(m_gridData.slotPrefab, slotSpawnPosition, Quaternion.identity, transform);
-                newSlot.Config(new(rowIndex, columnIndex));
+                newSlot.Config(new(rowIndex, columnIndex), this);
                 m_spawnedSlots.Add(newSlot);
             }
         }
