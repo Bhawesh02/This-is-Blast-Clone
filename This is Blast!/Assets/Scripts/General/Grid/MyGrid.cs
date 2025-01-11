@@ -9,8 +9,8 @@ public class MyGrid : MonoBehaviour
     
     private List<Slot> m_spawnedSlots = new();
 
-    public float Columns => m_gridData.gridSize.x;
-    public float Rows => m_gridData.gridSize.y;
+    public int Columns => m_gridData.gridSize.x;
+    public int Rows => m_gridData.gridSize.y;
     public List<Slot> Slots => m_spawnedSlots;
 
     public void SetGridData(GridData data)

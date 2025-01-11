@@ -31,7 +31,7 @@ public class Brick : SlotElement
         Config(GameConfig.Instance.brickElementData, slot, grid);
         m_brickConfigData = brickConfigData;
         transform.SetParent(m_occupiedSlot.transform);
-        transform.localPosition = m_elementData.positionOnGrid;
+        transform.localPosition = m_elementData.positionOnSlot;
         ConfigModels();
         CalculateNextSlotCoord();
     }

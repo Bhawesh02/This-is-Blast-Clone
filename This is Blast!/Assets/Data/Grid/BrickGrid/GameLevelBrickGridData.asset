@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb522f31595d482e8f0886d4edcfc605, type: 3}
-  m_Name: New Brick Element Data
+  m_Script: {fileID: 11500000, guid: 14a423ad8bc046ada4ff9ec5c0dc9efa, type: 3}
+  m_Name: GameLevelBrickGridData
   m_EditorClassIdentifier: 
-  elementPrefab: {fileID: 953007437325188470, guid: 8a00ea682de96ce4c89cc7f96461a9f2,
+  axisCombination: 1
+  gridSize: {x: 10, y: 10}
+  slotSpacing: 0.1
+  slotPrefab: {fileID: 721580534666990690, guid: b0f6f4079b688664cb2343c26f29ea85,
     type: 3}
-  positionOnGrid: {x: 0, y: 0.3, z: 0}
-  modleYIncrement: 0.5

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14a423ad8bc046ada4ff9ec5c0dc9efa, type: 3}
-  m_Name: GameLevelGridData
+  m_Name: GameLevelShooterGrid
   m_EditorClassIdentifier: 
   axisCombination: 1
-  gridSize: {x: 10, y: 10}
-  slotSpacing: 0.1
-  slotPrefab: {fileID: 721580534666990690, guid: b0f6f4079b688664cb2343c26f29ea85,
+  gridSize: {x: 3, y: 3}
+  slotSpacing: 0.5
+  slotPrefab: {fileID: 4232372356642016831, guid: cd1b8711286db3d4283c0c024d3b1469,
     type: 3}

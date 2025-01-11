@@ -4,7 +4,7 @@
 public class GridData : ScriptableObject
 {
     public AxisCombination axisCombination;
-    public Vector2 gridSize;
+    public Vector2Int gridSize;
     public float slotSpacing;
     public Slot slotPrefab;
 }

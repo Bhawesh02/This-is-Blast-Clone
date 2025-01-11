@@ -15,10 +15,10 @@ public class GameConfig : GenericConfig<GameConfig>
     
     [SerializeField] private List<BrickColorMaterialMap> m_brickColorMaterialData;
     
-    public BrickElementData brickElementData;
-    public Projectile projectilePrefab;
     
-    [Header("Brick Tween")]
+    
+    [Header("Brick")]
+    public BrickElementData brickElementData;
     
     [Range(0, 0.1f)]
     public float brickScaleDownDuration;
@@ -28,6 +28,10 @@ public class GameConfig : GenericConfig<GameConfig>
     public float brickMoveDownDuration;
     public Ease brickMoveDownEase;
     
+    [Header("Shooter")]
+    public ShooterElementData shooterElementData;
+    public Projectile projectilePrefab;
+
     public Material GetBrickMaterial(BrickColors brickColor)
     {
         foreach (BrickColorMaterialMap brickColorMaterialMap in m_brickColorMaterialData)

@@ -93,9 +93,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4389079365882408216}
   - component: {fileID: 1930383711329652333}
-  - component: {fileID: 721580534666990690}
+  - component: {fileID: 4232372356642016831}
   m_Layer: 0
-  m_Name: GameLevelSlot
+  m_Name: GameLevelShooterSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &721580534666990690
+--- !u!114 &4232372356642016831
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,6 +147,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5398208305450240739}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d0e92dfadef438591ba84b01245eec7, type: 3}
+  m_Script: {fileID: 11500000, guid: 989b053295f0416a92ed53ec73bdea91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
