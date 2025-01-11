@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ea306ebbd24983b515c8368669b1a2, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: 
+  m_brickColorMaterialData:
+  - brickColor: 0
+    brickMaterial: {fileID: 2100000, guid: 99cdbf7a8c301884b9869bd558741679, type: 2}
+  - brickColor: 1
+    brickMaterial: {fileID: 2100000, guid: 1731ff0df6d548d4aba32e0ffb22b4bf, type: 2}
+  - brickColor: 2
+    brickMaterial: {fileID: 2100000, guid: 5e2cedd0433d6bf4288cc93e6d45b438, type: 2}
+  - brickColor: 3
+    brickMaterial: {fileID: 2100000, guid: bfbb149601111304fbef725444faa01e, type: 2}
+  brickElementData: {fileID: 11400000, guid: af0aaf3876b97304f94ca55abbde5f17, type: 2}

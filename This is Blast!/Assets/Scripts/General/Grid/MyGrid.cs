@@ -11,6 +11,12 @@ public class MyGrid : MonoBehaviour
 
     public float Columns => m_gridData.gridSize.x;
     public float Rows => m_gridData.gridSize.y;
+    public List<Slot> Slots => m_spawnedSlots;
+
+    public void SetGridData(GridData data)
+    {
+        m_gridData = data;
+    }
     
     public void SpawnGrid()
     {
@@ -24,7 +30,7 @@ public class MyGrid : MonoBehaviour
             {
                 slotSpawnPosition = currentPosition + GetPostionIncrementBasedOnAxis(rowIndex, columnIndex);
                 newSlot = Instantiate(m_gridData.slotPrefab, slotSpawnPosition, Quaternion.identity, transform);
-                newSlot.Init(new(rowIndex, columnIndex));
+                newSlot.Config(new(rowIndex, columnIndex));
                 m_spawnedSlots.Add(newSlot);
             }
         }
@@ -43,6 +49,16 @@ public class MyGrid : MonoBehaviour
 
     public void ClearGrid()
     {
+#if UNITY_EDITOR
+        if (!EditorApplication.isPlaying && !EditorApplication.isPaused)
+        {
+            while (transform.childCount > 0)
+            {
+               DestroyImmediate(transform.GetChild(0).gameObject);
+            }
+            return;
+        }
+#endif
         foreach (Slot slot in m_spawnedSlots)
         {
             DestroySlot(slot);
@@ -63,5 +79,18 @@ public class MyGrid : MonoBehaviour
         }
 #endif
         Destroy(slot.gameObject);
+    }
+
+
+    public Slot GetSlot(Vector2 coord)
+    {
+        foreach (Slot spawnedSlot in m_spawnedSlots)
+        {
+            if (spawnedSlot.Coord == coord)
+            {
+                return spawnedSlot;
+            }
+        }
+        return null;
     }
 }
