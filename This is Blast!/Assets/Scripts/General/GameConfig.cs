@@ -12,7 +12,7 @@ public class GameConfig : GenericConfig<GameConfig>
         public BrickColors brickColor;
         public Material brickMaterial;
     }
-
+    
     [Header("Level")]
     public List<LevelData> levelDatas;
     
@@ -27,6 +27,8 @@ public class GameConfig : GenericConfig<GameConfig>
     [Range(0, 0.1f)]
     public float brickMoveDownDuration;
     public Ease brickMoveDownEase = Ease.Linear;
+
+    public HapticType brickDestroyedHaptic;
     
     [Header("Shooter")]
     public ShooterElementData shooterElementData;

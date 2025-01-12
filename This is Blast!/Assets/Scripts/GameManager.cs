@@ -31,7 +31,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void HandleOnBrickDestroyed()
     {
-        Handheld.Vibrate();
         m_numberOfBricksInLevel--;
         if (m_numberOfBricksInLevel == 0)
         {
