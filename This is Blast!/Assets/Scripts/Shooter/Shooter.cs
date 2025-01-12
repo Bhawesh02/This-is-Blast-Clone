@@ -60,9 +60,9 @@ public class Shooter : SlotElement
         m_currentState = newState;
     }
 
-    public void MoveToPosition(Vector3 newPosition, ShooterStates nextState)
+    public void MoveToPosition(Vector3 newGlobalPosition, ShooterStates nextState)
     {
-        m_shooterWalkingState.SetNewPositionAndState(newPosition, nextState);
+        m_shooterWalkingState.SetNewPositionAndState(newGlobalPosition, nextState);
         SwitchState(ShooterStates.WALKING);
     }
     

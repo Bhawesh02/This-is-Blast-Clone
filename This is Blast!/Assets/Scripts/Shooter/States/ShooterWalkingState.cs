@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ShooterWalkingState : ShooterState
 {
-    private float ROATION_RESET_DURATION = 0.1f;
+    private float ROATION_RESET_DURATION = 0.05f;
     
     private Vector3 m_newPosition;
     private ShooterStates m_shooterStateToChangeToAfterReaching;

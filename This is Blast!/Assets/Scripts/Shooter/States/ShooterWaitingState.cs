@@ -28,6 +28,9 @@ public class ShooterWaitingState : ShooterState
 
     public override void OnClick()
     {
-        //TODO  
+        Transform shootingSlotTransform = GameManager.Instance.GetNextShooterShootingSlot();
+        Vector3 newPosition = shootingSlotTransform.position + m_shooter.transform.localPosition;
+        m_shooter.transform.SetParent(shootingSlotTransform);
+        m_shooter.MoveToPosition(newPosition, ShooterStates.SHOOTING);
     }
 }
