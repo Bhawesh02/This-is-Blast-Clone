@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea306ebbd24983b515c8368669b1a2, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  levelDatas: []
+  levelDatas:
+  - {fileID: 11400000, guid: c962af962699a4a41a24f8d2112c2fe4, type: 2}
+  shooterShootingSlotPrefab: {fileID: 4114310673832767317, guid: f1e4d3929003270408a4032c0f1f8850,
+    type: 3}
   m_brickColorMaterialData:
   - brickColor: 0
     brickMaterial: {fileID: 2100000, guid: 99cdbf7a8c301884b9869bd558741679, type: 2}
@@ -27,6 +30,7 @@ MonoBehaviour:
   brickScaleDownEase: 4
   brickMoveDownDuration: 0.1
   brickMoveDownEase: 4
+  brickDestroyedHaptic: 0
   shooterElementData: {fileID: 11400000, guid: dfa4ab92b43170a42adbcfd45c3df7ec, type: 2}
   shooterMoveSpeed: 5
   shooterMoveEase: 4

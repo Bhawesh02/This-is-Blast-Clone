@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 
 public class GameConfig : GenericConfig<GameConfig>
 {
@@ -15,6 +16,7 @@ public class GameConfig : GenericConfig<GameConfig>
     
     [Header("Level")]
     public List<LevelData> levelDatas;
+    [FormerlySerializedAs("shooterShootingSlotPrefabs")] public Transform shooterShootingSlotPrefab;
     
     [Header("Brick")]
     [SerializeField] private List<BrickColorMaterialMap> m_brickColorMaterialData;

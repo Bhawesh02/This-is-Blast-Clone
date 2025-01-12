@@ -21,20 +21,9 @@ public class ShooterShootingSlots : MonoBehaviour
     private Vector3 m_endPosition;
 
     private List<ShootingSlotData> m_shootingSlotDatas = new ();
-    private int m_childCount;
     
     private void Awake()
     {
-        ArrangeChildren();
-        for (int childIndex = 0; childIndex < m_childCount; childIndex++)
-        {
-            m_shootingSlotDatas.Add(new ShootingSlotData()
-            {
-                slotTransform = transform.GetChild(childIndex),
-                isOccupied = false
-            });
-        }
-
         GameplayEvents.OnShooterShootingStateExit += EmptyShootingSlot;
     }
 
@@ -42,24 +31,41 @@ public class ShooterShootingSlots : MonoBehaviour
     {
         GameplayEvents.OnShooterShootingStateExit -= EmptyShootingSlot;
     }
-
-    [Button]
-    private void ArrangeChildren()
+    public void ClearSlots()
+    {
+        foreach (ShootingSlotData shootingSlotData in m_shootingSlotDatas)
+        {
+            Destroy(shootingSlotData.slotTransform.gameObject);
+        }
+        m_shootingSlotDatas.Clear();
+    }    
+    public void SpawnSlots(int slotsToSpawn)
+    {
+        Transform slotPrefab = GameConfig.Instance.shooterShootingSlotPrefab;
+        for (int slotIndex = 0; slotIndex < slotsToSpawn; slotIndex++)
+        {
+            m_shootingSlotDatas.Add(new ShootingSlotData()
+            {
+                slotTransform = Instantiate(slotPrefab, transform),
+                isOccupied = false
+            });
+        }
+        ArrangeSlots();
+        
+    }
+    
+    private void ArrangeSlots()
     {
         if (m_startPosition == m_endPosition)
         {
             return;
         }
-        m_childCount = transform.childCount;
-        if (m_childCount == 0)
+        float step = 1.0f / (m_shootingSlotDatas.Count - 1);
+        for (int slotIndex = 0; slotIndex < m_shootingSlotDatas.Count; slotIndex++)
         {
-            return;
-        }
-        float step = 1.0f / (m_childCount - 1);
-        for (int childIndex = 0; childIndex < m_childCount; childIndex++)
-        {
-            Transform child = transform.GetChild(childIndex);
-            child.localPosition = Vector3.Lerp(m_startPosition, m_endPosition, step * childIndex);
+            Transform slotTransofrm = m_shootingSlotDatas[slotIndex].slotTransform;
+            slotTransofrm.localPosition =
+                Vector3.Lerp(m_startPosition, m_endPosition, step * slotIndex);
         }
     }
 
@@ -81,6 +87,8 @@ public class ShooterShootingSlots : MonoBehaviour
         return null;
     }
 
+    
+    
     private void EmptyShootingSlot(Shooter shooter)
     {
         for (int dataIndex = 0; dataIndex < m_shootingSlotDatas.Count; dataIndex++)
@@ -106,5 +114,6 @@ public class ShooterShootingSlots : MonoBehaviour
         }
     }
 #endif
+
     
 }

@@ -6,7 +6,8 @@ public class LevelManager : MonoSingleton<LevelManager>
     [SerializeField] private MyGrid m_brickGrid;
     [SerializeField] private MyGrid m_shooterGrid;
     [SerializeField] private LevelData m_forceLevelToSpawn;
-
+    [SerializeField] private ShooterShootingSlots m_shooterShootingSlots;
+    
     private LevelData m_currentLevelData;
     private int m_currentLevelIndex;
     
@@ -36,6 +37,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         GetLevelToSpawn();
         SpawnBricks();
         SpawnShooters();
+        m_shooterShootingSlots.SpawnSlots(m_currentLevelData.numberToShootingSlotsToSpawn);
         GameplayEvents.SendOnLevelSpawned(m_currentLevelData);
     }
 
@@ -93,5 +95,6 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         m_brickGrid.ClearGrid();
         m_shooterGrid.ClearGrid();
+        m_shooterShootingSlots.ClearSlots();
     }
 }
