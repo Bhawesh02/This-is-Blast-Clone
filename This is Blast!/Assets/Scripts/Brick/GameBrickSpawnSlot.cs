@@ -15,7 +15,6 @@ public class GameBrickSpawnSlot : BrickSpawnSlot
     public override void EmptySlot()
     {
         base.EmptySlot();
-        Debug.Log("Empty Slot : "+Coord);
         GameplayEvents.SendOnBrickSlotEmpty(Coord);
     }
     

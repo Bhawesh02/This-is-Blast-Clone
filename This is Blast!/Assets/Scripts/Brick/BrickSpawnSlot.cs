@@ -8,6 +8,14 @@
 
     public abstract override void HandleDrag();
     
+    private void Awake()
+    {
+        m_currentBrickConfigData = new BrickConfigData()
+        {
+            slotCoord = Coord
+        };
+    }
+    
     public void InitBrickData(BrickConfigData brickConfigData)
     {
         m_currentBrickConfigData = brickConfigData;

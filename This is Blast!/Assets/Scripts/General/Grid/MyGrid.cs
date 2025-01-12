@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+[ExecuteAlways]
 public class MyGrid : MonoBehaviour
 {
     [SerializeField] private GridData m_gridData;
@@ -12,6 +13,7 @@ public class MyGrid : MonoBehaviour
     public int Columns => m_gridData.gridSize.x;
     public int Rows => m_gridData.gridSize.y;
     public List<Slot> Slots => m_spawnedSlots;
+    
 
     public void SetGridData(GridData data)
     {
@@ -56,6 +58,7 @@ public class MyGrid : MonoBehaviour
             {
                DestroyImmediate(transform.GetChild(0).gameObject);
             }
+            m_spawnedSlots.Clear();
             return;
         }
 #endif

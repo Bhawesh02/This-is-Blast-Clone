@@ -2,13 +2,6 @@
 
 public class LevelEditorSlot : BrickSpawnSlot
 {
-    private void Start()
-    {
-        m_currentBrickConfigData = new BrickConfigData()
-        {
-            slotCoord = Coord
-        };
-    }
     
     public override void HandleClick()
     {
