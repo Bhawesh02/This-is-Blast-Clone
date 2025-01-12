@@ -12,12 +12,12 @@ public class GameConfig : GenericConfig<GameConfig>
         public BrickColors brickColor;
         public Material brickMaterial;
     }
-    
-    [SerializeField] private List<BrickColorMaterialMap> m_brickColorMaterialData;
-    
-    
+
+    [Header("Level")]
+    public List<LevelData> levelDatas;
     
     [Header("Brick")]
+    [SerializeField] private List<BrickColorMaterialMap> m_brickColorMaterialData;
     public BrickElementData brickElementData;
     
     [Range(0, 0.1f)]

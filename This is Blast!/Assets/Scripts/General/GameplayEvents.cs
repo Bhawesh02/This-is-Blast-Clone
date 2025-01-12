@@ -4,11 +4,18 @@ using UnityEngine;
 
 public static class GameplayEvents
 {
-    public static event Action<Brick> OnBrickDestroyed;
+    public static event Action<LevelData> OnLevelSpawned;
 
-    public static void SendOnBrickDestroyed(Brick destroyedBrick)
+    public static void SendOnLevelSpawned(LevelData currentLevelData)
     {
-        OnBrickDestroyed?.Invoke(destroyedBrick);
+        OnLevelSpawned?.Invoke(currentLevelData);
+    }
+    
+    public static event Action OnBrickDestroyed;
+
+    public static void SendOnBrickDestroyed()
+    {
+        OnBrickDestroyed?.Invoke();
     }
     public static event Action<Vector2Int> OnBrickSlotEmpty;
 
@@ -28,5 +35,12 @@ public static class GameplayEvents
     public static void SendOnShooterShootingStateExit(Shooter shooter)
     {
         OnShooterShootingStateExit?.Invoke(shooter);
+    }
+
+    public static event Action OnLevelCompleted;
+
+    public static void SendOnLevelCompleted()
+    {
+        OnLevelCompleted?.Invoke();
     }
 }

@@ -14,6 +14,7 @@ public class Brick : SlotElement
     private Vector2Int m_nextSlotCoord;
 
     private bool m_isTargeted;
+    private int m_currentBrickStrength;
     
     public BrickElementData BrickElementData => (BrickElementData)m_elementData;
     public BrickConfigData BrickConfigData => m_brickConfigData;
@@ -41,6 +42,7 @@ public class Brick : SlotElement
         m_brickConfigData = brickConfigData;
         transform.SetParent(m_occupiedSlot.transform);
         transform.localPosition = m_elementData.positionOnSlot;
+        m_currentBrickStrength = m_brickConfigData.brickStrenght;
         ConfigModels();
         CalculateNextSlotCoord();
     }
@@ -90,15 +92,7 @@ public class Brick : SlotElement
         }
         m_nextSlotCoord.y -= 1;
     }
-    public override void HandleClick()
-    {
-        //Nothing
-    }
-    public override void HandleDrag()
-    {
-        //Nothing
-    }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         Projectile projectile = other.gameObject.GetComponent<Projectile>();
@@ -111,27 +105,35 @@ public class Brick : SlotElement
     
     private void HandleOnProjectileCollision(Projectile projectile)
     {
-        if (projectile.BrickColorToHit != m_brickConfigData.brickColor)
+        if (projectile.BrickToHit != this)
         {
             return;
         }
         int lastIndex = m_modlesSpawned.Count - 1;
+        if (lastIndex < 0)
+        {
+            return;
+        }
         Transform nextModleTransform = m_modlesSpawned[lastIndex].transform;
         m_modlesSpawned.RemoveAt(lastIndex);
         nextModleTransform.DOScale(Vector3.zero, GameConfig.Instance.brickScaleDownDuration)
             .SetEase(GameConfig.Instance.brickScaleDownEase)
-            .OnComplete(() =>
-            {
-                m_isTargeted = false;
-            if (m_modlesSpawned.Count == 0)
-            {
-                m_occupiedSlot.EmptySlot();
-                Destroy(gameObject);
-            }
-            });
-        m_brickConfigData.brickStrenght--;
+            .OnComplete(DestroyBrick);
+        m_currentBrickStrength--;
+        GameplayEvents.SendOnBrickDestroyed();
+        ProjectileSpawner.Instance.ReturnProjectile(projectile);
     }
-    
+
+    private void DestroyBrick()
+    {
+        m_isTargeted = false;
+        if (m_currentBrickStrength == 0)
+        {
+            m_occupiedSlot.EmptySlot();
+            Destroy(gameObject);
+        }
+    }
+
     private void HandleOnBrickSlotEmpty(Vector2Int coord)
     {
         if (m_nextSlotCoord != coord || m_occupiedSlot.Coord == coord)
@@ -152,5 +154,14 @@ public class Brick : SlotElement
                 newSlot.OccupySlot(this);
                 CalculateNextSlotCoord();
             });
+    }
+    
+    public override void HandleClick()
+    {
+        //Nothing
+    }
+    public override void HandleDrag()
+    {
+        //Nothing
     }
 }

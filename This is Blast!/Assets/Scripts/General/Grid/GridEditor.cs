@@ -1,5 +1,7 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
+
 
 [CustomEditor(typeof(MyGrid))]
 public class GridEditor : Editor
@@ -21,3 +23,4 @@ public class GridEditor : Editor
         }
     }
 }
+#endif

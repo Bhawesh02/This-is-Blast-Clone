@@ -13,10 +13,12 @@ using UnityEditor;
 				if (s_instance == null)
 				{
 					Load();
+#if UNITY_EDITOR
 					if (s_instance == null)
 					{
 						CreateConfig();
 					}
+#endif
 				}
 				return s_instance;
 			}
@@ -34,10 +36,12 @@ using UnityEditor;
 			}
 		}
 
+
+#if UNITY_EDITOR
 		private static void CreateConfig()
 		{
 			string typeName = typeof(T).ToString();
-			GenericConfig<T> asset = ScriptableObject.CreateInstance<T>();
+			GenericConfig<T> asset = CreateInstance<T>();
 			string savePath = "Assets/Resources/"+CONFIG_LOCATION;
 			string assetName = string.Format("{0}.asset", typeName);
 			ValidateDirectory(savePath);
@@ -45,7 +49,8 @@ using UnityEditor;
 			AssetDatabase.SaveAssets();
 			s_instance = (T)asset;
 		}
-
+		
+#endif
 		private static void ValidateDirectory(string directory)
 		{
 			if (!Directory.Exists(directory))

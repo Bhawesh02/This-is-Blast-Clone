@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
@@ -7,13 +8,37 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private MyGrid m_brickSpawnGrid;
     [SerializeField] private Transform m_noProjectileLeftShooterHolder;
 
+    private int m_numberOfBricksInLevel;
+    
     public Vector3 NoProjectileLeftShooterHolder => m_noProjectileLeftShooterHolder.position;
     
     protected override void Init()
     {
-        //NOthing
+        GameplayEvents.OnLevelSpawned += HandleOnLevelSpawned;
+        GameplayEvents.OnBrickDestroyed += HandleOnBrickDestroyed;
     }
 
+    private void OnDestroy()
+    {        
+        GameplayEvents.OnLevelSpawned -= HandleOnLevelSpawned;
+        GameplayEvents.OnBrickDestroyed -= HandleOnBrickDestroyed;
+    }
+    
+    private void HandleOnLevelSpawned(LevelData levelData)
+    {
+        m_numberOfBricksInLevel = levelData.GetTotalNumberOfBricks();
+    }
+
+    private void HandleOnBrickDestroyed()
+    {
+        Handheld.Vibrate();
+        m_numberOfBricksInLevel--;
+        if (m_numberOfBricksInLevel == 0)
+        {
+            GameplayEvents.SendOnLevelCompleted();
+        }
+    }
+    
     public Transform GetNextShooterShootingSlot(Shooter shooter)
     {
         return m_shooterShootingSlots.GetNextFreeShootingSlot(shooter);

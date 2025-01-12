@@ -41,7 +41,7 @@ public class LevelEditor : MonoSingleton<LevelEditor>
     {
         m_brickGrid.ClearGrid();
     }
-
+#if UNITY_EDITOR
     public void SaveData()
     {
         m_levelData.brickConfigDatas.Clear();
@@ -52,4 +52,6 @@ public class LevelEditor : MonoSingleton<LevelEditor>
         }
         AssetDatabase.SaveAssets();
     }
+#endif
+    
 }

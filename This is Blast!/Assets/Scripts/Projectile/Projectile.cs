@@ -1,11 +1,7 @@
-﻿using System;
-using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private const string BRICK_TAG = "Brick";
-    
     private BrickColors m_brickColorToHit;
     private Brick m_brickToHit;
     private Vector3 m_brickPosition;
@@ -13,6 +9,7 @@ public class Projectile : MonoBehaviour
     private Vector3 m_directionToTarget;
     
     public BrickColors BrickColorToHit => m_brickColorToHit;
+    public Brick BrickToHit => m_brickToHit;
     
     public void Init(BrickColors brickColor, Brick brick, Vector3 position)
     {
@@ -45,16 +42,5 @@ public class Projectile : MonoBehaviour
         m_directionToTarget.Normalize();
         transform.position += m_directionToTarget * (GameConfig.Instance.projectTravleSpeed * Time.deltaTime);
     }
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag(BRICK_TAG))
-        {
-            return;
-        }
-
-        m_fired = false;
-        ProjectileSpawner.Instance.ReturnProjectile(this);
-    }
+    
 }

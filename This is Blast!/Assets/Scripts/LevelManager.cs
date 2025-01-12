@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class LevelManager : MonoSingleton<LevelManager>
 {
@@ -7,21 +8,45 @@ public class LevelManager : MonoSingleton<LevelManager>
     [SerializeField] private LevelData m_forceLevelToSpawn;
 
     private LevelData m_currentLevelData;
+    private int m_currentLevelIndex;
     
     protected override void Init()
     {
+        GameplayEvents.OnLevelCompleted += SpawnLevel;
         if (m_forceLevelToSpawn)
         {
             m_currentLevelData = m_forceLevelToSpawn;
         }
+        m_currentLevelIndex = 0;
+    }
+
+    private void OnDestroy()
+    {
+        GameplayEvents.OnLevelCompleted -= SpawnLevel;
+    }
+
+    private void Start()
+    {
         SpawnLevel();
     }
 
     private void SpawnLevel()
     {
         ClearLevel();
+        GetLevelToSpawn();
         SpawnBricks();
         SpawnShooters();
+        GameplayEvents.SendOnLevelSpawned(m_currentLevelData);
+    }
+
+    private void GetLevelToSpawn()
+    {
+        if (m_forceLevelToSpawn)
+        {
+            m_currentLevelData = m_forceLevelToSpawn;
+            return;
+        }
+        m_currentLevelData = GameConfig.Instance.levelDatas[m_currentLevelIndex++];
     }
 
     private void SpawnBricks()
