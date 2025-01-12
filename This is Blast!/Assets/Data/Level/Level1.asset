@@ -315,9 +315,9 @@ MonoBehaviour:
     brickColor: 0
   shooterSpawnRowDatas:
   - shooterRowData:
-    - brickColor: 3
+    - brickColor: 0
       projectileCount: 20
-    - brickColor: 2
+    - brickColor: 0
       projectileCount: 20
     - brickColor: 0
       projectileCount: 20

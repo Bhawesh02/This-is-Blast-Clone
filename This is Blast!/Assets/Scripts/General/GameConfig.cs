@@ -22,18 +22,19 @@ public class GameConfig : GenericConfig<GameConfig>
     
     [Range(0, 0.1f)]
     public float brickScaleDownDuration;
-    public Ease brickScaleDownEase;
+    public Ease brickScaleDownEase = Ease.Linear;
     
     [Range(0, 0.1f)]
     public float brickMoveDownDuration;
-    public Ease brickMoveDownEase;
+    public Ease brickMoveDownEase = Ease.Linear;
     
     [Header("Shooter")]
     public ShooterElementData shooterElementData;
     public float shooterMoveSpeed = 5f;
-    public Ease shooterMoveEase;
+    public Ease shooterMoveEase = Ease.Linear;
     public float shooterWaitingStateYIncrement = 0.2f;
-
+    public float projectileFireDelay = 0.1f;
+    public float projectTravleSpeed = 6f;
     public Projectile projectilePrefab;
 
     public Material GetBrickMaterial(BrickColors brickColor)

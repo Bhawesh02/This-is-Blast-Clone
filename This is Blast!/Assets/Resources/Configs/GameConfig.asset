@@ -27,4 +27,10 @@ MonoBehaviour:
   brickMoveDownDuration: 0.1
   brickMoveDownEase: 4
   shooterElementData: {fileID: 11400000, guid: dfa4ab92b43170a42adbcfd45c3df7ec, type: 2}
-  projectilePrefab: {fileID: 0}
+  shooterMoveSpeed: 5
+  shooterMoveEase: 4
+  shooterWaitingStateYIncrement: 0.2
+  projectileFireDelay: 0.1
+  projectTravleSpeed: 10
+  projectilePrefab: {fileID: 959821840508261199, guid: 0e049b992b7475e4193c1f29cd843a17,
+    type: 3}

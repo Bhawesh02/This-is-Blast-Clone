@@ -12,10 +12,19 @@ public class Brick : SlotElement
     private BrickConfigData m_brickConfigData;
     private List<MeshRenderer> m_modlesSpawned = new List<MeshRenderer>();
     private Vector2Int m_nextSlotCoord;
+
+    private bool m_isTargeted;
     
     public BrickElementData BrickElementData => (BrickElementData)m_elementData;
     public BrickConfigData BrickConfigData => m_brickConfigData;
-
+    public bool IsTargeted => m_isTargeted;
+    public Vector2Int CurrentSlotCoord => m_occupiedSlot.Coord;
+    
+    
+    public void SetIsTargeted()
+    {
+        m_isTargeted = true;
+    }
     private void Awake()
     {
         GameplayEvents.OnBrickSlotEmpty += HandleOnBrickSlotEmpty;
@@ -90,7 +99,7 @@ public class Brick : SlotElement
         //Nothing
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         Projectile projectile = other.gameObject.GetComponent<Projectile>();
         if (!projectile)
@@ -106,7 +115,6 @@ public class Brick : SlotElement
         {
             return;
         }
-
         int lastIndex = m_modlesSpawned.Count - 1;
         Transform nextModleTransform = m_modlesSpawned[lastIndex].transform;
         m_modlesSpawned.RemoveAt(lastIndex);
@@ -135,10 +143,13 @@ public class Brick : SlotElement
             return;
         }
         m_occupiedSlot.EmptySlot();
-        newSlot.OccupySlot(this);
         Vector3 localPosition = transform.localPosition;
         transform.SetParent(newSlot.transform);
-        transform.DOLocalMove(localPosition, GameConfig.Instance.brickMoveDownDuration).SetEase(GameConfig.Instance.brickMoveDownEase);
-        CalculateNextSlotCoord();
+        transform.DOLocalMove(localPosition, GameConfig.Instance.brickMoveDownDuration).SetEase(GameConfig.Instance.brickMoveDownEase).OnComplete(
+            () =>
+            {
+                newSlot.OccupySlot(this);
+                CalculateNextSlotCoord();
+            });
     }
 }

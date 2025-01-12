@@ -15,16 +15,17 @@ public class ProjectileSpawner : MonoSingleton<ProjectileSpawner>
         m_projectilePool = new ProjectilePool(m_projectile,this);
     }
 
-    public Projectile GetProjectile(Vector3 position)
+    public Projectile GetProjectile()
     {
        Projectile projectile = m_projectilePool.GetItem();
-       projectile.transform.position = position;
+       projectile.gameObject.SetActive(true);
        return projectile;
     }
 
     public void ReturnProjectile(Projectile projectile)
     {
         projectile.gameObject.SetActive(false);
+        projectile.transform.localPosition = Vector3.zero;
         m_projectilePool.ReturnItem(projectile);
     }
 }

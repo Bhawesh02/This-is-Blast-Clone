@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
 
 public class Shooter : SlotElement
 {
     [SerializeField]
     private MeshRenderer m_modelMeshRenderer;
-    [ReadOnly] 
-    private ShooterStates m_currentState;
+    [SerializeField] 
+    private TextMeshProUGUI m_projectileCountText;
     
+    private ShooterStates m_currentState;
     private ShooterConfigData m_shooterConfigData;
     private ShooterIdleState m_shooterIdleState;
     private ShooterWaitingState m_shooterWaitingState;
@@ -20,6 +22,7 @@ public class Shooter : SlotElement
 
     public Vector2Int OccupiedSlotCoord => m_occupiedSlot.Coord;
     public BrickColors ShooterColor => m_shooterConfigData.brickColor;
+    public int ShooterProjectileCount => m_shooterConfigData.projectileCount;
     
     private void Awake()
     {
@@ -48,6 +51,7 @@ public class Shooter : SlotElement
         transform.localPosition = shooterElementData.positionOnSlot;
         m_modelMeshRenderer.material = GameConfig.Instance.GetBrickMaterial(m_shooterConfigData.brickColor);
         SwitchState(slot.Coord.y == grid.Rows - 1 ? ShooterStates.WAITING : ShooterStates.IDLE);
+        UpdateProjectileCount(ShooterProjectileCount);
     }
 
     public void SwitchState(ShooterStates newState)
@@ -94,15 +98,30 @@ public class Shooter : SlotElement
     {
         m_currentShooterState?.OnClick();
     }
-
-    public override void HandleDrag()
-    {
-        //Nothing
-    }
-
+    
     public void EmptySlot()
     {
         m_occupiedSlot.EmptySlot();
         m_occupiedSlot = null;
     }
+
+    public void LookAtPoint(Vector3 point)
+    {
+        point.y = transform.position.y;
+        Quaternion rotation = Quaternion.LookRotation(point - transform.position, Vector3.up);
+        transform.rotation = rotation;
+    }
+    
+    public void UpdateProjectileCount(int projectileCount)
+    {
+        m_projectileCountText.text = $"{projectileCount}";
+    }
+    
+    
+    
+    public override void HandleDrag()
+    {
+        //Nothing
+    }
+
 }

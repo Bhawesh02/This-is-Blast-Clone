@@ -35,8 +35,7 @@ public class ShooterWalkingState : ShooterState
 
     public override void OnUpdate()
     {
-        Quaternion rotation = Quaternion.LookRotation(m_newPosition - m_shooter.transform.position, Vector3.up);
-        m_shooter.transform.rotation = rotation;
+        m_shooter.LookAtPoint(m_newPosition);
     }
 
     public override void OnClick()
