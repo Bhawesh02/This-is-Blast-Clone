@@ -9,6 +9,7 @@ public abstract class Slot : MonoBehaviour, IHandleInput
     
     public Vector2Int Coord => m_coord;
     public bool IsOccupied => m_isOccupied;
+    public SlotElement OccupiedElement => m_slotElement;
     
     public virtual void Config(Vector2Int coord, MyGrid grid)
     {

@@ -38,7 +38,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         m_shooterGrid.SpawnGrid();
         ShooterGameSlot shooterSlot;
-        Vector2 slotCoord;
+        Vector2Int slotCoord;
         ShooterConfigData shooterConfigData;
         int columnCount = m_shooterGrid.Columns - 1;
         int shooterDataColumn;

@@ -10,10 +10,16 @@ public static class GameplayEvents
     {
         OnBrickDestroyed?.Invoke(destroyedBrick);
     }
-    public static event Action<Vector2> OnBrickSlotEmpty;
+    public static event Action<Vector2Int> OnBrickSlotEmpty;
 
-    public static void SendOnBrickSlotEmpty(Vector2 slotCoord)
+    public static void SendOnBrickSlotEmpty(Vector2Int slotCoord)
     {
         OnBrickSlotEmpty?.Invoke(slotCoord);
+    } 
+    public static event Action<Vector2Int> OnShooterSlotEmpty;
+
+    public static void SendOnShooterSlotEmpty(Vector2Int slotCoord)
+    {
+        OnShooterSlotEmpty?.Invoke(slotCoord);
     }
 }

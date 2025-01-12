@@ -17,6 +17,10 @@ public class Shooter : SlotElement
     private ShooterShootingState m_shooterShootingState;
     private ShooterState m_currentShooterState;
     private Dictionary<ShooterStates, ShooterState> m_shooterStateMap;
+
+    public Vector2Int OccupiedSlotCoord => m_occupiedSlot.Coord;
+    public BrickColors ShooterColor => m_shooterConfigData.brickColor;
+    
     private void Awake()
     {
         Init();
@@ -52,7 +56,6 @@ public class Shooter : SlotElement
         {
             return;
         }
-        Debug.Log($"{m_occupiedSlot.Coord} , New State : {newState}");
         m_currentShooterState?.OnExit();
         ShooterState shooterState = m_shooterStateMap.GetValueOrDefault(newState);
         m_currentShooterState = shooterState;
@@ -64,6 +67,22 @@ public class Shooter : SlotElement
     {
         m_shooterWalkingState.SetNewPositionAndState(newGlobalPosition, nextState);
         SwitchState(ShooterStates.WALKING);
+    }
+
+    public void MoveToSlot(Vector2Int slotCoord)
+    {
+        Slot nextSlot = m_grid.GetSlot(slotCoord);
+        if (nextSlot.IsOccupied)
+        {
+            return;
+        }
+        m_occupiedSlot.EmptySlot();
+        nextSlot.OccupySlot(this);
+        m_occupiedSlot = nextSlot;
+        Vector3 newPosition = nextSlot.transform.position + transform.localPosition;
+        transform.SetParent(nextSlot.transform);
+        MoveToPosition(newPosition, 
+            slotCoord.y == m_grid.Rows - 1 ? ShooterStates.WAITING : ShooterStates.IDLE);
     }
     
     private void Update()
@@ -79,5 +98,11 @@ public class Shooter : SlotElement
     public override void HandleDrag()
     {
         //Nothing
+    }
+
+    public void EmptySlot()
+    {
+        m_occupiedSlot.EmptySlot();
+        m_occupiedSlot = null;
     }
 }

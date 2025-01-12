@@ -82,7 +82,7 @@ public class MyGrid : MonoBehaviour
     }
 
 
-    public Slot GetSlot(Vector2 coord)
+    public Slot GetSlot(Vector2Int coord)
     {
         foreach (Slot spawnedSlot in m_spawnedSlots)
         {

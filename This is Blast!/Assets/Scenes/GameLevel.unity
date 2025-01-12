@@ -15731,6 +15731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_shooterShootingSlots: {fileID: 1959791667}
+  m_brickSpawnGrid: {fileID: 1847881731}
 --- !u!4 &1886714622
 Transform:
   m_ObjectHideFlags: 0

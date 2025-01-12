@@ -11,7 +11,7 @@ public class Brick : SlotElement
     
     private BrickConfigData m_brickConfigData;
     private List<MeshRenderer> m_modlesSpawned = new List<MeshRenderer>();
-    private Vector2 m_nextSlotCoord;
+    private Vector2Int m_nextSlotCoord;
     
     public BrickElementData BrickElementData => (BrickElementData)m_elementData;
     public BrickConfigData BrickConfigData => m_brickConfigData;
@@ -73,7 +73,7 @@ public class Brick : SlotElement
     
     private void CalculateNextSlotCoord()
     {
-        Vector2 currentCoord = m_occupiedSlot.Coord;
+        Vector2Int currentCoord = m_occupiedSlot.Coord;
         m_nextSlotCoord = currentCoord;
         if (currentCoord.y == 0)
         {
@@ -123,7 +123,7 @@ public class Brick : SlotElement
         m_brickConfigData.brickStrenght--;
     }
     
-    private void HandleOnBrickSlotEmpty(Vector2 coord)
+    private void HandleOnBrickSlotEmpty(Vector2Int coord)
     {
         if (m_nextSlotCoord != coord || m_occupiedSlot.Coord == coord)
         {

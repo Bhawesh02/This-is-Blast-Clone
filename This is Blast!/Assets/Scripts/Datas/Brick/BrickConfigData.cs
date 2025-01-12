@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public struct BrickConfigData
 {
-    public Vector2 slotCoord;
+    public Vector2Int slotCoord;
     public int brickStrenght;
     public BrickColors brickColor;
 }
