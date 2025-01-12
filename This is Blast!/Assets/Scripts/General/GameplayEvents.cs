@@ -22,4 +22,11 @@ public static class GameplayEvents
     {
         OnShooterSlotEmpty?.Invoke(slotCoord);
     }
+
+    public static event Action<Shooter> OnShooterShootingStateExit;
+
+    public static void SendOnShooterShootingStateExit(Shooter shooter)
+    {
+        OnShooterShootingStateExit?.Invoke(shooter);
+    }
 }

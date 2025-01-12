@@ -19,10 +19,17 @@ public class Shooter : SlotElement
     private ShooterShootingState m_shooterShootingState;
     private ShooterState m_currentShooterState;
     private Dictionary<ShooterStates, ShooterState> m_shooterStateMap;
-
+    private Transform m_currentShootingSlotTransform;
+    
     public Vector2Int OccupiedSlotCoord => m_occupiedSlot.Coord;
     public BrickColors ShooterColor => m_shooterConfigData.brickColor;
     public int ShooterProjectileCount => m_shooterConfigData.projectileCount;
+    public Transform CurrentShootingSlotTransform => m_currentShootingSlotTransform;
+    
+    public void SetCurrentShootingSlot(Transform currentShootingSlot)
+    {
+        m_currentShootingSlotTransform = currentShootingSlot;
+    }
     
     private void Awake()
     {
@@ -115,6 +122,10 @@ public class Shooter : SlotElement
     public void UpdateProjectileCount(int projectileCount)
     {
         m_projectileCountText.text = $"{projectileCount}";
+        if (projectileCount == 0)
+        {
+            MoveToPosition(GameManager.Instance.NoProjectileLeftShooterHolder, ShooterStates.IDLE);
+        }
     }
     
     

@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class ShooterShootingSlots : MonoBehaviour
     {
         public Transform slotTransform;
         public bool isOccupied;
+        public Shooter occupiedShooter;
     };
     
     
@@ -32,8 +34,15 @@ public class ShooterShootingSlots : MonoBehaviour
                 isOccupied = false
             });
         }
+
+        GameplayEvents.OnShooterShootingStateExit += EmptyShootingSlot;
     }
-    
+
+    private void OnDestroy()
+    {
+        GameplayEvents.OnShooterShootingStateExit -= EmptyShootingSlot;
+    }
+
     [Button]
     private void ArrangeChildren()
     {
@@ -54,7 +63,7 @@ public class ShooterShootingSlots : MonoBehaviour
         }
     }
 
-    public Transform GetNextFreeShootingSlot()
+    public Transform GetNextFreeShootingSlot(Shooter shooter)
     {
         for (int shootingSlotindex = 0; shootingSlotindex < m_shootingSlotDatas.Count; shootingSlotindex++)
         {
@@ -64,11 +73,27 @@ public class ShooterShootingSlots : MonoBehaviour
                 continue;
             }
             shootingSlotData.isOccupied = true;
+            shootingSlotData.occupiedShooter = shooter;
             m_shootingSlotDatas[shootingSlotindex] = shootingSlotData;
             return shootingSlotData.slotTransform;
         }
 
         return null;
+    }
+
+    private void EmptyShootingSlot(Shooter shooter)
+    {
+        for (int dataIndex = 0; dataIndex < m_shootingSlotDatas.Count; dataIndex++)
+        {
+            ShootingSlotData shootingSlotData = m_shootingSlotDatas[dataIndex];
+            if (shootingSlotData.occupiedShooter != shooter)
+            {
+                continue;
+            }
+            shootingSlotData.isOccupied = false;
+            shootingSlotData.occupiedShooter = null;
+            m_shootingSlotDatas[dataIndex] = shootingSlotData;
+        }
     }
     
 #if UNITY_EDITOR

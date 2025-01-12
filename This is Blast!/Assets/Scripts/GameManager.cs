@@ -5,15 +5,18 @@ public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] private ShooterShootingSlots m_shooterShootingSlots;
     [SerializeField] private MyGrid m_brickSpawnGrid;
+    [SerializeField] private Transform m_noProjectileLeftShooterHolder;
+
+    public Vector3 NoProjectileLeftShooterHolder => m_noProjectileLeftShooterHolder.position;
     
     protected override void Init()
     {
         //NOthing
     }
 
-    public Transform GetNextShooterShootingSlot()
+    public Transform GetNextShooterShootingSlot(Shooter shooter)
     {
-        return m_shooterShootingSlots.GetNextFreeShootingSlot();
+        return m_shooterShootingSlots.GetNextFreeShootingSlot(shooter);
     }
 
     public List<Brick> GetBricksToShootAt()

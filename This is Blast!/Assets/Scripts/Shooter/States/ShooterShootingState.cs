@@ -20,6 +20,7 @@ public class ShooterShootingState : ShooterState
     public override void OnExit()
     {
         m_shooter.StopCoroutine(m_shootingCoroutine);
+        GameplayEvents.SendOnShooterShootingStateExit(m_shooter);
     }
     
     private IEnumerator ShootBrick()
@@ -69,7 +70,6 @@ public class ShooterShootingState : ShooterState
         {
             return;
         }
-        Debug.Log($"Brick At Slot : {brick.CurrentSlotCoord}");
         brick.SetIsTargeted();
         m_shooter.LookAtPoint(brick.transform.position);
         Projectile projectile = ProjectileSpawner.Instance.GetProjectile();

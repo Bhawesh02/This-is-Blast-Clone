@@ -10,6 +10,8 @@ public class Projectile : MonoBehaviour
     private Brick m_brickToHit;
     private Vector3 m_brickPosition;
     private bool m_fired;
+    private Vector3 m_directionToTarget;
+    
     public BrickColors BrickColorToHit => m_brickColorToHit;
     
     public void Init(BrickColors brickColor, Brick brick, Vector3 position)
@@ -27,7 +29,8 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
-        Quaternion rotation = Quaternion.LookRotation(m_brickPosition - transform.position);
+        m_directionToTarget = m_brickPosition - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(m_directionToTarget);
         transform.rotation = rotation;
         m_fired = true;
     }
@@ -38,8 +41,9 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
-        Vector3 directionToTarget = m_brickPosition - transform.position;
-        transform.Translate(directionToTarget.normalized * (GameConfig.Instance.projectTravleSpeed * Time.deltaTime));
+        m_directionToTarget = m_brickPosition - transform.position;
+        m_directionToTarget.Normalize();
+        transform.position += m_directionToTarget * (GameConfig.Instance.projectTravleSpeed * Time.deltaTime);
     }
 
 
@@ -52,11 +56,5 @@ public class Projectile : MonoBehaviour
 
         m_fired = false;
         ProjectileSpawner.Instance.ReturnProjectile(this);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, m_brickPosition);
     }
 }

@@ -121,13 +121,14 @@ public class Brick : SlotElement
         nextModleTransform.DOScale(Vector3.zero, GameConfig.Instance.brickScaleDownDuration)
             .SetEase(GameConfig.Instance.brickScaleDownEase)
             .OnComplete(() =>
-        {
+            {
+                m_isTargeted = false;
             if (m_modlesSpawned.Count == 0)
             {
                 m_occupiedSlot.EmptySlot();
                 Destroy(gameObject);
             }
-        });
+            });
         m_brickConfigData.brickStrenght--;
     }
     
