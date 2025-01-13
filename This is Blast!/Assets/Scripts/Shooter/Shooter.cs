@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
@@ -20,6 +21,8 @@ public class Shooter : SlotElement
     private ShooterState m_currentShooterState;
     private Dictionary<ShooterStates, ShooterState> m_shooterStateMap;
     private Transform m_currentShootingSlotTransform;
+    private Vector3 m_originalScale;
+    private GameConfig m_gameConfig;
     
     public Vector2Int OccupiedSlotCoord => m_occupiedSlot.Coord;
     public BrickColors ShooterColor => m_shooterConfigData.brickColor;
@@ -49,6 +52,9 @@ public class Shooter : SlotElement
             { ShooterStates.WALKING , m_shooterWalkingState},
             { ShooterStates.SHOOTING , m_shooterShootingState},
         };
+        m_originalScale = transform.localScale;
+        transform.localScale = Vector3.zero;
+        m_gameConfig = GameConfig.Instance;
     }
 
     public void Config(ShooterConfigData shooterConfigData, ShooterElementData shooterElementData, Slot slot, MyGrid grid)
@@ -56,9 +62,10 @@ public class Shooter : SlotElement
         Config(shooterElementData, slot, grid);
         m_shooterConfigData = shooterConfigData;
         transform.localPosition = shooterElementData.positionOnSlot;
-        m_modelMeshRenderer.material = GameConfig.Instance.GetBrickMaterial(m_shooterConfigData.brickColor);
+        m_modelMeshRenderer.material = m_gameConfig.GetBrickMaterial(m_shooterConfigData.brickColor);
         SwitchState(slot.Coord.y == grid.Rows - 1 ? ShooterStates.WAITING : ShooterStates.IDLE);
         UpdateProjectileCount(ShooterProjectileCount);
+        transform.DOScale(m_originalScale, m_gameConfig.shooterScaleUpDuration).SetEase(m_gameConfig.shooterScaleUpEase);
     }
 
     public void SwitchState(ShooterStates newState)

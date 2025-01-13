@@ -38,6 +38,11 @@ public class GameConfig : GenericConfig<GameConfig>
     
     [Header("Shooter")]
     public ShooterElementData shooterElementData;
+    
+    [Range(0, 1f)]
+    public float shooterScaleUpDuration = 0.5f;
+    public Ease shooterScaleUpEase = Ease.InBack;
+    
     public float shooterMoveSpeed = 5f;
     public Ease shooterMoveEase = Ease.Linear;
     public float shooterWaitingStateYIncrement = 0.2f;

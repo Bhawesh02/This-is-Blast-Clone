@@ -48,14 +48,6 @@ public class Brick : SlotElement
         ConfigModels();
         CalculateNextSlotCoord();
     }
-
-    public void ScaleUpModels()
-    {
-        foreach (MeshRenderer modle in m_modlesSpawned)
-        {
-            modle.transform.DOScale(m_modlePrefab.transform.localScale,m_gameConfig.brickScaleUpDuration).SetEase(m_gameConfig.brickScaleUpEase);
-        }
-    }
     
     private void ConfigModels()
     {
@@ -81,9 +73,17 @@ public class Brick : SlotElement
             m_modlesSpawned.Add(modelSpawned);
             modelPosition.y += BrickElementData.modleYIncrement;
             modelSpawned.transform.localScale = Vector3.zero;
-        }        
+        }
+        ScaleUpModels();
     }
-
+    
+    private void ScaleUpModels()
+    {
+        foreach (MeshRenderer modle in m_modlesSpawned)
+        {
+            modle.transform.DOScale(m_modlePrefab.transform.localScale,m_gameConfig.brickScaleUpDuration).SetEase(m_gameConfig.brickScaleUpEase);
+        }
+    }
     private void ChangeModelsMaterials()
     {
         Material materialToApply = GameConfig.Instance.GetBrickMaterial(m_brickConfigData.brickColor);

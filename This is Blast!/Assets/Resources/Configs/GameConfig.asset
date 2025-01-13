@@ -40,6 +40,8 @@ MonoBehaviour:
   brickMoveDownEase: 4
   brickDestroyedHaptic: 0
   shooterElementData: {fileID: 11400000, guid: dfa4ab92b43170a42adbcfd45c3df7ec, type: 2}
+  shooterScaleUpDuration: 0.5
+  shooterScaleUpEase: 27
   shooterMoveSpeed: 5
   shooterMoveEase: 4
   shooterWaitingStateYIncrement: 0.2
