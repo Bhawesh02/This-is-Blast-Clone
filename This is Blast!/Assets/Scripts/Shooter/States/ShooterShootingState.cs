@@ -75,7 +75,6 @@ public class ShooterShootingState : ShooterState
         brick.SetIsTargeted();
         m_shooter.LookAtPoint(brick.transform.position);
         Projectile projectile = ProjectileSpawner.Instance.GetProjectile();
-        projectile.transform.position = m_shooter.transform.position;
         projectile.Init(m_shooter.ShooterColor, brick, m_shooter.transform.position);
         projectile.Fire();
         m_projectileCount--;

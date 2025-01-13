@@ -24,6 +24,7 @@ public class ProjectileSpawner : MonoSingleton<ProjectileSpawner>
 
     public void ReturnProjectile(Projectile projectile)
     {
+        projectile.OnReturnToPool();
         projectile.gameObject.SetActive(false);
         projectile.transform.localPosition = Vector3.zero;
         m_projectilePool.ReturnItem(projectile);
