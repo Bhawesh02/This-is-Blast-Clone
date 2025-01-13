@@ -11,6 +11,7 @@ public class ShooterShootingSlots : MonoBehaviour
         public Transform slotTransform;
         public bool isOccupied;
         public Shooter occupiedShooter;
+        public bool hasBrickToShotAt;
     };
     
     
@@ -25,11 +26,13 @@ public class ShooterShootingSlots : MonoBehaviour
     private void Awake()
     {
         GameplayEvents.OnShooterShootingStateExit += EmptyShootingSlot;
+        GameplayEvents.OnShooterFindingBrickToShotAt += HandleOnShooterFindingBrickToShootAt;
     }
 
     private void OnDestroy()
     {
         GameplayEvents.OnShooterShootingStateExit -= EmptyShootingSlot;
+        GameplayEvents.OnShooterFindingBrickToShotAt -= HandleOnShooterFindingBrickToShootAt;
     }
     public void ClearSlots()
     {
@@ -100,6 +103,33 @@ public class ShooterShootingSlots : MonoBehaviour
             shootingSlotData.occupiedShooter = null;
             m_shootingSlotDatas[dataIndex] = shootingSlotData;
         }
+    }
+    
+    private void HandleOnShooterFindingBrickToShootAt(Shooter shooter, bool brickFound)
+    {
+        for (int shootingSlotIndex = 0; shootingSlotIndex < m_shootingSlotDatas.Count; shootingSlotIndex++)
+        {
+            ShootingSlotData shootingSlotData = m_shootingSlotDatas[shootingSlotIndex];
+            if (shootingSlotData.occupiedShooter == shooter)
+            {
+                shootingSlotData.hasBrickToShotAt = brickFound;
+                m_shootingSlotDatas[shootingSlotIndex] = shootingSlotData;
+                break;
+            }
+        }
+
+        if (brickFound)
+        {
+            return;
+        }
+        foreach (ShootingSlotData shootingSlotData in m_shootingSlotDatas)
+        {
+            if (shootingSlotData.hasBrickToShotAt)
+            {
+                return;
+            }
+        }
+        GameplayEvents.SendOnNoShooterHasBrickToShootAt();
     }
     
 #if UNITY_EDITOR

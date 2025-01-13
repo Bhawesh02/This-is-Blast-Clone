@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
@@ -16,14 +15,16 @@ public class GameManager : MonoSingleton<GameManager>
     {
         GameplayEvents.OnLevelSpawned += HandleOnLevelSpawned;
         GameplayEvents.OnBrickDestroyed += HandleOnBrickDestroyed;
+        GameplayEvents.OnNoShooterHasBrickToShootAt += CheckForLevelFail;
     }
 
     private void OnDestroy()
     {        
         GameplayEvents.OnLevelSpawned -= HandleOnLevelSpawned;
         GameplayEvents.OnBrickDestroyed -= HandleOnBrickDestroyed;
+        GameplayEvents.OnNoShooterHasBrickToShootAt -= CheckForLevelFail;
     }
-    
+
     private void HandleOnLevelSpawned(LevelData levelData)
     {
         m_numberOfBricksInLevel = levelData.GetTotalNumberOfBricks();
@@ -36,6 +37,17 @@ public class GameManager : MonoSingleton<GameManager>
         {
             GameplayEvents.SendOnLevelCompleted();
         }
+    }
+    
+    private void CheckForLevelFail()
+    {
+        if (m_numberOfBricksInLevel == 0)
+        {
+            return;
+        }
+        print("Level Over");
+        //Change After UI is ready
+        GameplayEvents.SendOnLevelCompleted();
     }
     
     public Transform GetNextShooterShootingSlot(Shooter shooter)

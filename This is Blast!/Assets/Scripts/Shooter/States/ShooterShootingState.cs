@@ -38,9 +38,11 @@ public class ShooterShootingState : ShooterState
             }
             if (m_bricksToShootAt.Count == 0)
             {
+                GameplayEvents.SendOnShooterFindingBrickToShotAt(m_shooter, false);
                 yield return projectileFireDelayWait;
                 continue;
             }
+            GameplayEvents.SendOnShooterFindingBrickToShotAt(m_shooter, true);
             ShootNearestBrick();
             yield return projectileFireDelayWait;
         }

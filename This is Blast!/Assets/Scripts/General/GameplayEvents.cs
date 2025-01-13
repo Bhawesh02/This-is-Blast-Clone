@@ -29,7 +29,21 @@ public static class GameplayEvents
     {
         OnShooterSlotEmpty?.Invoke(slotCoord);
     }
+    
+    public static event Action<Shooter, bool> OnShooterFindingBrickToShotAt;
+    
+    public static void SendOnShooterFindingBrickToShotAt(Shooter shooter, bool brickFound)
+    {
+        OnShooterFindingBrickToShotAt?.Invoke(shooter,brickFound);
+    }
 
+    public static event Action OnNoShooterHasBrickToShootAt;
+
+    public static void SendOnNoShooterHasBrickToShootAt()
+    {
+        OnNoShooterHasBrickToShootAt?.Invoke();
+    }
+    
     public static event Action<Shooter> OnShooterShootingStateExit;
 
     public static void SendOnShooterShootingStateExit(Shooter shooter)
@@ -37,6 +51,8 @@ public static class GameplayEvents
         OnShooterShootingStateExit?.Invoke(shooter);
     }
 
+    
+    
     public static event Action OnLevelCompleted;
 
     public static void SendOnLevelCompleted()
