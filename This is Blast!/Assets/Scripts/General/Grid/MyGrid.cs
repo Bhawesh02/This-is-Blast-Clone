@@ -9,11 +9,16 @@ public class MyGrid : MonoBehaviour
     [SerializeField] private GridData m_gridData;
     
     private List<Slot> m_spawnedSlots = new();
-
-    public int Columns => m_gridData.gridSize.x;
-    public int Rows => m_gridData.gridSize.y;
+    
+    public Vector2Int GridSize => m_gridData.gridSize;
+    public int Columns => GridSize.x;
+    public int Rows => GridSize.y;
     public List<Slot> Slots => m_spawnedSlots;
     
+    public void OverrideGridSize(Vector2Int newGridSize)
+    {
+        m_gridData.gridSize = newGridSize;
+    }
 
     public void SetGridData(GridData data)
     {
@@ -32,7 +37,7 @@ public class MyGrid : MonoBehaviour
             {
                 slotSpawnPosition = currentPosition + GetPostionIncrementBasedOnAxis(rowIndex, columnIndex);
                 newSlot = Instantiate(m_gridData.slotPrefab, slotSpawnPosition, Quaternion.identity, transform);
-                newSlot.Config(new(rowIndex, columnIndex), this);
+                newSlot.Config(new(columnIndex, rowIndex), this);
                 m_spawnedSlots.Add(newSlot);
             }
         }
@@ -42,9 +47,9 @@ public class MyGrid : MonoBehaviour
     {
         return m_gridData.axisCombination switch
         {
-            AxisCombination.XY => new Vector3(rowIndex + (rowIndex * m_gridData.slotSpacing), columnIndex + (columnIndex * m_gridData.slotSpacing), 0f),
-            AxisCombination.XZ => new Vector3(rowIndex+ (rowIndex * m_gridData.slotSpacing), 0f, columnIndex + (columnIndex * m_gridData.slotSpacing)),
-            AxisCombination.YZ => new Vector3(0f, rowIndex+ (rowIndex * m_gridData.slotSpacing), columnIndex + (columnIndex * m_gridData.slotSpacing)),
+            AxisCombination.XY => new Vector3(columnIndex + (columnIndex * m_gridData.slotSpacing), rowIndex + (rowIndex * m_gridData.slotSpacing), 0f),
+            AxisCombination.XZ => new Vector3(columnIndex+ (columnIndex * m_gridData.slotSpacing), 0f, rowIndex + (rowIndex * m_gridData.slotSpacing)),
+            AxisCombination.YZ => new Vector3(0f, columnIndex+ (columnIndex * m_gridData.slotSpacing), rowIndex + (rowIndex * m_gridData.slotSpacing)),
             _ => Vector3.zero
         };
     }

@@ -1,6 +1,6 @@
 ﻿public abstract class BrickSpawnSlot : Slot
 {
-    protected BrickConfigData m_currentBrickConfigData;
+    protected BrickConfigData m_currentBrickConfigData ;
 
     public BrickConfigData CurrentBrickConfig => m_currentBrickConfigData;
 
@@ -8,7 +8,7 @@
 
     public abstract override void HandleDrag();
     
-    private void Awake()
+    public void InitConfigData()
     {
         m_currentBrickConfigData = new BrickConfigData()
         {

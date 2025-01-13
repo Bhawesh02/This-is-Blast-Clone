@@ -3,5 +3,6 @@
     RED,
     YELLOW,
     GREEN,
-    PURPLE
+    PURPLE,
+    BLUE
 }

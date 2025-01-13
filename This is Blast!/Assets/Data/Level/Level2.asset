@@ -10,29 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02f4b013547c4463b0bcd5f50e1f4cbf, type: 3}
-  m_Name: Level1
+  m_Name: Level2
   m_EditorClassIdentifier: 
   brickConfigDatas: []
   shooterSpawnRowDatas:
   - shooterRowData:
-    - brickColor: 0
-      projectileCount: 20
-    - brickColor: 0
-      projectileCount: 20
     - brickColor: 1
       projectileCount: 20
-  - shooterRowData:
-    - brickColor: 1
-      projectileCount: 20
-    - brickColor: 1
+    - brickColor: 4
       projectileCount: 20
     - brickColor: 0
       projectileCount: 20
   - shooterRowData:
+    - brickColor: 4
+      projectileCount: 20
     - brickColor: 0
-      projectileCount: 10
-    - brickColor: 0
-      projectileCount: 10
+      projectileCount: 20
     - brickColor: 1
       projectileCount: 20
-  numberToShootingSlotsToSpawn: 2
+  numberToShootingSlotsToSpawn: 4

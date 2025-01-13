@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelDatas:
   - {fileID: 11400000, guid: c962af962699a4a41a24f8d2112c2fe4, type: 2}
+  - {fileID: 11400000, guid: ab7b9735f53780341a371c80bed6176f, type: 2}
+  - {fileID: 11400000, guid: 73c6825c07336b342ae39327278942d9, type: 2}
+  - {fileID: 11400000, guid: 70c370a15c5e19b43b035929284d0c8e, type: 2}
+  - {fileID: 11400000, guid: e40f6bc398330da45af4e7b8b6b92e41, type: 2}
   shooterShootingSlotPrefab: {fileID: 4114310673832767317, guid: f1e4d3929003270408a4032c0f1f8850,
     type: 3}
   m_brickColorMaterialData:
@@ -25,10 +29,12 @@ MonoBehaviour:
     brickMaterial: {fileID: 2100000, guid: 5e2cedd0433d6bf4288cc93e6d45b438, type: 2}
   - brickColor: 3
     brickMaterial: {fileID: 2100000, guid: bfbb149601111304fbef725444faa01e, type: 2}
+  - brickColor: 4
+    brickMaterial: {fileID: 2100000, guid: 3ce26c13a4899274ba972b20dcc7b7fe, type: 2}
   brickElementData: {fileID: 11400000, guid: af0aaf3876b97304f94ca55abbde5f17, type: 2}
   brickScaleDownDuration: 0.1
   brickScaleDownEase: 4
-  brickMoveDownDuration: 0.1
+  brickMoveDownDuration: 0.05
   brickMoveDownEase: 4
   brickDestroyedHaptic: 0
   shooterElementData: {fileID: 11400000, guid: dfa4ab92b43170a42adbcfd45c3df7ec, type: 2}
@@ -36,6 +42,6 @@ MonoBehaviour:
   shooterMoveEase: 4
   shooterWaitingStateYIncrement: 0.2
   projectileFireDelay: 0.1
-  projectTravleSpeed: 10
+  projectTravleSpeed: 20
   projectilePrefab: {fileID: 959821840508261199, guid: 0e049b992b7475e4193c1f29cd843a17,
     type: 3}

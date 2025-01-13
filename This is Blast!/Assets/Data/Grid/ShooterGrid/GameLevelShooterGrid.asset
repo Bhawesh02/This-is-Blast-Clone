@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameLevelShooterGrid
   m_EditorClassIdentifier: 
   axisCombination: 1
-  gridSize: {x: 3, y: 3}
+  gridSize: {x: 3, y: 4}
   slotSpacing: 0.5
   slotPrefab: {fileID: 4232372356642016831, guid: cd1b8711286db3d4283c0c024d3b1469,
     type: 3}

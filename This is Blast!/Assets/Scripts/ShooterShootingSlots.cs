@@ -86,8 +86,6 @@ public class ShooterShootingSlots : MonoBehaviour
 
         return null;
     }
-
-    
     
     private void EmptyShootingSlot(Shooter shooter)
     {

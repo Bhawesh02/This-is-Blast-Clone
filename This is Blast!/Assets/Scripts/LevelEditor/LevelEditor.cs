@@ -30,6 +30,11 @@ public class LevelEditor : MonoSingleton<LevelEditor>
     {
         ClearLevel();
         m_brickGrid.SpawnGrid();
+        foreach (Slot slot in m_brickGrid.Slots)
+        {
+            LevelEditorSlot levelEditorSlot = (LevelEditorSlot)slot;
+            levelEditorSlot.InitConfigData();
+        }
         foreach (BrickConfigData brickConfigData in m_levelData.brickConfigDatas)
         {
             LevelEditorSlot slot = (LevelEditorSlot)m_brickGrid.GetSlot(brickConfigData.slotCoord);

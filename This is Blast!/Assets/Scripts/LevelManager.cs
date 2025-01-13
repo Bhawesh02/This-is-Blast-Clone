@@ -49,6 +49,10 @@ public class LevelManager : MonoSingleton<LevelManager>
             return;
         }
         m_currentLevelData = GameConfig.Instance.levelDatas[m_currentLevelIndex++];
+        if (m_currentLevelIndex >= GameConfig.Instance.levelDatas.Count)
+        {
+            m_currentLevelIndex = 0;
+        }
     }
 
     private void SpawnBricks()
@@ -63,24 +67,22 @@ public class LevelManager : MonoSingleton<LevelManager>
     
     private void SpawnShooters()
     {
+        Vector2Int shooterGridSize = m_shooterGrid.GridSize;
+        shooterGridSize.y = m_currentLevelData.shooterSpawnRowDatas.Count;
+        m_shooterGrid.OverrideGridSize(shooterGridSize);
         m_shooterGrid.SpawnGrid();
         ShooterGameSlot shooterSlot;
         Vector2Int slotCoord;
         ShooterConfigData shooterConfigData;
-        int columnCount = m_shooterGrid.Columns - 1;
-        int shooterDataColumn;
-        for (int columnIndex = columnCount; columnIndex >= 0; columnIndex--)
+        int shooterSpawnRowIndex;
+        for (int rowIndex = m_shooterGrid.Rows - 1; rowIndex >= 0 ; rowIndex--)
         {
-            for (int rowIndex = 0; rowIndex < m_shooterGrid.Rows; rowIndex++)
+            for (int columnIndex = 0; columnIndex < m_shooterGrid.Columns; columnIndex++)
             {
-                shooterDataColumn = columnCount - columnIndex;
-                if (shooterDataColumn >= m_currentLevelData.shooterSpawnRowDatas.Count)
-                {
-                    break;
-                }
-                shooterConfigData = m_currentLevelData.shooterSpawnRowDatas[shooterDataColumn]
-                    .shooterRowData[rowIndex];
-                slotCoord = new(rowIndex, columnIndex);
+                shooterSpawnRowIndex = m_shooterGrid.Rows - rowIndex - 1;
+                shooterConfigData = m_currentLevelData.shooterSpawnRowDatas[shooterSpawnRowIndex]
+                    .shooterRowData[columnIndex];
+                slotCoord = new(columnIndex, rowIndex);
                 shooterSlot = (ShooterGameSlot)m_shooterGrid.GetSlot(slotCoord);
                 if (!shooterSlot)
                 {

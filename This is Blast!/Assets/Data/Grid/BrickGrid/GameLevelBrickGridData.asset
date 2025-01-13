@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameLevelBrickGridData
   m_EditorClassIdentifier: 
   axisCombination: 1
-  gridSize: {x: 10, y: 10}
+  gridSize: {x: 10, y: 15}
   slotSpacing: 0.1
   slotPrefab: {fileID: 721580534666990690, guid: b0f6f4079b688664cb2343c26f29ea85,
     type: 3}
