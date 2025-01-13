@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   levelDatas:
-  - {fileID: 11400000, guid: c962af962699a4a41a24f8d2112c2fe4, type: 2}
+  - {fileID: 11400000, guid: 679ca6de17a48344d8c412e639f8dd8f, type: 2}
   - {fileID: 11400000, guid: ab7b9735f53780341a371c80bed6176f, type: 2}
   - {fileID: 11400000, guid: 73c6825c07336b342ae39327278942d9, type: 2}
   - {fileID: 11400000, guid: 70c370a15c5e19b43b035929284d0c8e, type: 2}
