@@ -33,7 +33,7 @@ MonoBehaviour:
     brickMaterial: {fileID: 2100000, guid: 3ce26c13a4899274ba972b20dcc7b7fe, type: 2}
   brickElementData: {fileID: 11400000, guid: af0aaf3876b97304f94ca55abbde5f17, type: 2}
   brickScaleDownDuration: 0.1
-  brickScaleDownEase: 4
+  brickScaleDownEase: 23
   brickMoveDownDuration: 0.05
   brickMoveDownEase: 4
   brickDestroyedHaptic: 0
