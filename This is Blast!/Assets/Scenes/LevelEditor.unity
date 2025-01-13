@@ -503,7 +503,7 @@ MonoBehaviour:
   m_levelEditorGridData: {fileID: 11400000, guid: 5a18d13090e252a47a8186dcb896cb54,
     type: 2}
   m_brickGrid: {fileID: 1847881731}
-  m_levelData: {fileID: 11400000, guid: 679ca6de17a48344d8c412e639f8dd8f, type: 2}
+  m_levelData: {fileID: 0}
   m_brickColorToApply: 0
   m_brickStrength: 1
 --- !u!4 &965264524
