@@ -35,6 +35,7 @@ public class GameManager : MonoSingleton<GameManager>
         m_numberOfBricksInLevel--;
         if (m_numberOfBricksInLevel == 0)
         {
+            Debug.Log("Level Completed");
             GameplayEvents.SendOnLevelCompleted();
         }
     }
@@ -45,9 +46,8 @@ public class GameManager : MonoSingleton<GameManager>
         {
             return;
         }
-        print("Level Over");
-        //Change After UI is ready
-        GameplayEvents.SendOnLevelCompleted();
+        Debug.Log("Level Failed");
+        GameplayEvents.SendOnOnLevelFailed();
     }
     
     public Transform GetNextShooterShootingSlot(Shooter shooter)

@@ -16,12 +16,14 @@ public class Brick : SlotElement
     private bool m_isTargeted;
     private int m_currentBrickStrength;
     private GameConfig m_gameConfig;
+    private bool m_isMoving;
     
     public BrickElementData BrickElementData => (BrickElementData)m_elementData;
     public BrickConfigData BrickConfigData => m_brickConfigData;
     public bool IsTargeted => m_isTargeted;
     public Vector2Int CurrentSlotCoord => m_occupiedSlot.Coord;
-    
+
+    public bool IsMoving => m_isMoving;
     
     public void SetIsTargeted()
     {
@@ -159,11 +161,13 @@ public class Brick : SlotElement
         m_occupiedSlot.EmptySlot();
         Vector3 localPosition = transform.localPosition;
         transform.SetParent(newSlot.transform);
+        newSlot.OccupySlot(this);
+        m_isMoving = true;
         transform.DOLocalMove(localPosition, m_gameConfig.brickMoveDownDuration).SetEase(m_gameConfig.brickMoveDownEase).OnComplete(
             () =>
             {
-                newSlot.OccupySlot(this);
                 CalculateNextSlotCoord();
+                m_isMoving = false;
             });
     }
     

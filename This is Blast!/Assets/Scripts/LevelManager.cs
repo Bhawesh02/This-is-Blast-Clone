@@ -9,28 +9,31 @@ public class LevelManager : MonoSingleton<LevelManager>
     [SerializeField] private ShooterShootingSlots m_shooterShootingSlots;
     
     private LevelData m_currentLevelData;
-    private int m_currentLevelIndex;
+    private int m_currentLevelIndex = 0;
     
     protected override void Init()
     {
         GameplayEvents.OnLevelCompleted += SpawnLevel;
-        if (m_forceLevelToSpawn)
-        {
-            m_currentLevelData = m_forceLevelToSpawn;
-        }
-        m_currentLevelIndex = 0;
+        GameplayEvents.OnLevelFailed += RestartLevel;
     }
 
     private void OnDestroy()
     {
         GameplayEvents.OnLevelCompleted -= SpawnLevel;
+        GameplayEvents.OnLevelFailed -= RestartLevel;
     }
 
     private void Start()
     {
         SpawnLevel();
     }
-
+    
+    private void RestartLevel()
+    {
+        m_currentLevelIndex--;
+        SpawnLevel();
+    }
+    
     private void SpawnLevel()
     {
         ClearLevel();

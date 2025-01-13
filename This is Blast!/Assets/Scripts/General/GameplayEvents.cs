@@ -50,13 +50,18 @@ public static class GameplayEvents
     {
         OnShooterShootingStateExit?.Invoke(shooter);
     }
-
-    
     
     public static event Action OnLevelCompleted;
 
     public static void SendOnLevelCompleted()
     {
         OnLevelCompleted?.Invoke();
+    }
+    
+    public static event Action OnLevelFailed;
+
+    public static void SendOnOnLevelFailed()
+    {
+        OnLevelFailed?.Invoke();
     }
 }

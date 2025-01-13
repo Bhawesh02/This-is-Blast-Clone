@@ -68,7 +68,7 @@ public class ShooterShootingState : ShooterState
 
     private void ShootAtBrick(Brick brick)
     {
-        if (!brick)
+        if (!brick || brick.IsMoving)
         {
             return;
         }
