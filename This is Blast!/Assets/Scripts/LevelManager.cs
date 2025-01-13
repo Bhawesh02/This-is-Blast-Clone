@@ -62,6 +62,8 @@ public class LevelManager : MonoSingleton<LevelManager>
         {
             BrickSpawnSlot slot = (BrickSpawnSlot)m_brickGrid.GetSlot(brickConfigData.slotCoord);
             slot.InitBrickData(brickConfigData);
+            Brick brick = (Brick)slot.OccupiedElement;
+            brick.ScaleUpModels();
         }
     }
     

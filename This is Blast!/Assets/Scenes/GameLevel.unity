@@ -810,8 +810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_brickGrid: {fileID: 1847881731}
   m_shooterGrid: {fileID: 316433681}
-  m_forceLevelToSpawn: {fileID: 11400000, guid: ab7b9735f53780341a371c80bed6176f,
-    type: 2}
+  m_forceLevelToSpawn: {fileID: 0}
   m_shooterShootingSlots: {fileID: 1959791667}
 --- !u!4 &1203510464
 Transform:

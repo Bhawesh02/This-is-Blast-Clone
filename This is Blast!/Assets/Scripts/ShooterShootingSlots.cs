@@ -124,7 +124,7 @@ public class ShooterShootingSlots : MonoBehaviour
         }
         foreach (ShootingSlotData shootingSlotData in m_shootingSlotDatas)
         {
-            if (shootingSlotData.hasBrickToShotAt)
+            if (shootingSlotData.hasBrickToShotAt || !shootingSlotData.isOccupied)
             {
                 return;
             }

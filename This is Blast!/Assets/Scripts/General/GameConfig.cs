@@ -22,6 +22,10 @@ public class GameConfig : GenericConfig<GameConfig>
     [SerializeField] private List<BrickColorMaterialMap> m_brickColorMaterialData;
     public BrickElementData brickElementData;
     
+    [Range(0, 1f)]
+    public float brickScaleUpDuration;
+    public Ease brickScaleUpEase = Ease.InBack;
+
     [Range(0, 0.1f)]
     public float brickScaleDownDuration;
     public Ease brickScaleDownEase = Ease.Linear;

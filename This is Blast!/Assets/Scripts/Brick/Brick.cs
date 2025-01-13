@@ -15,6 +15,7 @@ public class Brick : SlotElement
 
     private bool m_isTargeted;
     private int m_currentBrickStrength;
+    private GameConfig m_gameConfig;
     
     public BrickElementData BrickElementData => (BrickElementData)m_elementData;
     public BrickConfigData BrickConfigData => m_brickConfigData;
@@ -29,6 +30,7 @@ public class Brick : SlotElement
     private void Awake()
     {
         GameplayEvents.OnBrickSlotEmpty += HandleOnBrickSlotEmpty;
+        m_gameConfig = GameConfig.Instance;
     }
 
     private void OnDestroy()
@@ -38,7 +40,7 @@ public class Brick : SlotElement
 
     public void Config(BrickConfigData brickConfigData, Slot slot, MyGrid grid)
     {
-        Config(GameConfig.Instance.brickElementData, slot, grid);
+        Config(m_gameConfig.brickElementData, slot, grid);
         m_brickConfigData = brickConfigData;
         transform.SetParent(m_occupiedSlot.transform);
         transform.localPosition = m_elementData.positionOnSlot;
@@ -47,6 +49,14 @@ public class Brick : SlotElement
         CalculateNextSlotCoord();
     }
 
+    public void ScaleUpModels()
+    {
+        foreach (MeshRenderer modle in m_modlesSpawned)
+        {
+            modle.transform.DOScale(m_modlePrefab.transform.localScale,m_gameConfig.brickScaleUpDuration).SetEase(m_gameConfig.brickScaleUpEase);
+        }
+    }
+    
     private void ConfigModels()
     {
         if (m_modlesSpawned.Count != m_brickConfigData.brickStrenght)
@@ -70,6 +80,7 @@ public class Brick : SlotElement
             modelSpawned = Instantiate(m_modlePrefab,modelPosition, Quaternion.identity, transform);
             m_modlesSpawned.Add(modelSpawned);
             modelPosition.y += BrickElementData.modleYIncrement;
+            modelSpawned.transform.localScale = Vector3.zero;
         }        
     }
 
@@ -116,8 +127,8 @@ public class Brick : SlotElement
         }
         Transform nextModleTransform = m_modlesSpawned[lastIndex].transform;
         m_modlesSpawned.RemoveAt(lastIndex);
-        nextModleTransform.DOScale(Vector3.zero, GameConfig.Instance.brickScaleDownDuration)
-            .SetEase(GameConfig.Instance.brickScaleDownEase)
+        nextModleTransform.DOScale(Vector3.zero, m_gameConfig.brickScaleDownDuration)
+            .SetEase(m_gameConfig.brickScaleDownEase)
             .OnComplete(DestroyBrick);
         m_currentBrickStrength--;
         GameplayEvents.SendOnBrickDestroyed();
@@ -148,7 +159,7 @@ public class Brick : SlotElement
         m_occupiedSlot.EmptySlot();
         Vector3 localPosition = transform.localPosition;
         transform.SetParent(newSlot.transform);
-        transform.DOLocalMove(localPosition, GameConfig.Instance.brickMoveDownDuration).SetEase(GameConfig.Instance.brickMoveDownEase).OnComplete(
+        transform.DOLocalMove(localPosition, m_gameConfig.brickMoveDownDuration).SetEase(m_gameConfig.brickMoveDownEase).OnComplete(
             () =>
             {
                 newSlot.OccupySlot(this);
