@@ -28,6 +28,7 @@ public class Shooter : SlotElement
     public BrickColors ShooterColor => m_shooterConfigData.brickColor;
     public int ShooterProjectileCount => m_shooterConfigData.projectileCount;
     public Transform CurrentShootingSlotTransform => m_currentShootingSlotTransform;
+    public Slot OccupiedSlot => m_occupiedSlot;
     
     public void SetCurrentShootingSlot(Transform currentShootingSlot)
     {

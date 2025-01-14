@@ -10,6 +10,10 @@ public class ShooterIdleState : ShooterState
 
     public override void OnEnter()
     {
+        if (!m_shooter.OccupiedSlot)
+        {
+            return;
+        }
         m_nextSlotCoord = m_shooter.OccupiedSlotCoord;
         m_nextSlotCoord.y++;
         GameplayEvents.OnShooterSlotEmpty += HandelOnShooterSlotEmpty;

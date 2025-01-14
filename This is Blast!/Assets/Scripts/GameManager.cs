@@ -8,6 +8,7 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private Transform m_noProjectileLeftShooterHolder;
 
     private int m_numberOfBricksInLevel;
+    private bool m_isLevelFailed;
     
     public Vector3 NoProjectileLeftShooterHolder => m_noProjectileLeftShooterHolder.position;
     
@@ -42,10 +43,12 @@ public class GameManager : MonoSingleton<GameManager>
     
     private void CheckForLevelFail()
     {
-        if (m_numberOfBricksInLevel == 0)
+        if (m_numberOfBricksInLevel == 0 || m_isLevelFailed)
         {
             return;
         }
+        m_isLevelFailed = true;
+        Debug.Log("Level Failed");
         GameplayEvents.SendOnOnLevelFailed();
     }
     

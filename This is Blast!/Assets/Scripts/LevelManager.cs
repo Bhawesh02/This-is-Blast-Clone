@@ -16,7 +16,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         GameplayEvents.OnLevelCompleted += HandleOnLevelCompleted;
         GameplayEvents.OnLevelFailed += HandleOnLevelFailed;
-        GameplayEvents.OnLevelUIShown += HandleOnlevelUIShown;
+        GameplayEvents.OnLevelUIShown += HandleOnLevelUIShown;
     }
 
 
@@ -24,7 +24,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         GameplayEvents.OnLevelCompleted -= HandleOnLevelCompleted;
         GameplayEvents.OnLevelFailed -= HandleOnLevelFailed;
-        GameplayEvents.OnLevelUIShown -= HandleOnlevelUIShown;
+        GameplayEvents.OnLevelUIShown -= HandleOnLevelUIShown;
     }
 
     private void HandleOnLevelCompleted()
@@ -38,7 +38,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     }
     
     
-    private void HandleOnlevelUIShown()
+    private void HandleOnLevelUIShown()
     {
         if (m_isLevelPassed)
         {
@@ -70,7 +70,14 @@ public class LevelManager : MonoSingleton<LevelManager>
         m_shooterShootingSlots.SpawnSlots(m_currentLevelData.numberToShootingSlotsToSpawn);
         GameplayEvents.SendOnLevelSpawned(m_currentLevelData);
     }
-
+    
+    private void ClearLevel()
+    {
+        m_brickGrid.ClearGrid();
+        m_shooterGrid.ClearGrid();
+        m_shooterShootingSlots.ClearSlots();
+    }
+    
     private void GetLevelToSpawn()
     {
         if (m_forceLevelToSpawn)
@@ -123,10 +130,5 @@ public class LevelManager : MonoSingleton<LevelManager>
         }
     }
     
-    private void ClearLevel()
-    {
-        m_brickGrid.ClearGrid();
-        m_shooterGrid.ClearGrid();
-        m_shooterShootingSlots.ClearSlots();
-    }
+    
 }
