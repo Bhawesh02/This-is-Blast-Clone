@@ -46,7 +46,6 @@ public class GameManager : MonoSingleton<GameManager>
         {
             return;
         }
-        Debug.Log("Level Failed");
         GameplayEvents.SendOnOnLevelFailed();
     }
     

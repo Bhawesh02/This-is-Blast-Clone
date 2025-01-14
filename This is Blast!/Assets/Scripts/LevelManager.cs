@@ -10,19 +10,46 @@ public class LevelManager : MonoSingleton<LevelManager>
     
     private LevelData m_currentLevelData;
     private int m_currentLevelIndex = 0;
+    private bool m_isLevelPassed;
     
     protected override void Init()
     {
-        GameplayEvents.OnLevelCompleted += SpawnLevel;
-        GameplayEvents.OnLevelFailed += RestartLevel;
+        GameplayEvents.OnLevelCompleted += HandleOnLevelCompleted;
+        GameplayEvents.OnLevelFailed += HandleOnLevelFailed;
+        GameplayEvents.OnLevelUIShown += HandleOnlevelUIShown;
     }
+
 
     private void OnDestroy()
     {
-        GameplayEvents.OnLevelCompleted -= SpawnLevel;
-        GameplayEvents.OnLevelFailed -= RestartLevel;
+        GameplayEvents.OnLevelCompleted -= HandleOnLevelCompleted;
+        GameplayEvents.OnLevelFailed -= HandleOnLevelFailed;
+        GameplayEvents.OnLevelUIShown -= HandleOnlevelUIShown;
     }
 
+    private void HandleOnLevelCompleted()
+    {
+        m_isLevelPassed = true;
+    }
+
+    private void HandleOnLevelFailed()
+    {
+        m_isLevelPassed = false;
+    }
+    
+    
+    private void HandleOnlevelUIShown()
+    {
+        if (m_isLevelPassed)
+        {
+            SpawnLevel();
+        }
+        else
+        {
+            RestartLevel();
+        }
+    }
+    
     private void Start()
     {
         SpawnLevel();

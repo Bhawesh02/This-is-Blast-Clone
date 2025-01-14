@@ -64,4 +64,11 @@ public static class GameplayEvents
     {
         OnLevelFailed?.Invoke();
     }
+
+    public static event Action OnLevelUIShown;
+
+    public static void SendOnLevelUIShown()
+    {
+        OnLevelUIShown?.Invoke();
+    }
 }

@@ -16,7 +16,8 @@ public class GameConfig : GenericConfig<GameConfig>
     
     [Header("Level")]
     public List<LevelData> levelDatas;
-    [FormerlySerializedAs("shooterShootingSlotPrefabs")] public Transform shooterShootingSlotPrefab;
+    public Transform shooterShootingSlotPrefab;
+    public float levelCompletedScreenShowDelay = 2f;
     
     [Header("Brick")]
     [SerializeField] private List<BrickColorMaterialMap> m_brickColorMaterialData;

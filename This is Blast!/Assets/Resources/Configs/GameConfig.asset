@@ -45,8 +45,8 @@ MonoBehaviour:
   shooterMoveSpeed: 5
   shooterMoveEase: 4
   shooterWaitingStateYIncrement: 0.5
-  shooterFireDelay: 0.1
-  projectTravleSpeed: 20
+  shooterFireDelay: 0.05
+  projectTravleSpeed: 25
   projectilePrefab: {fileID: 959821840508261199, guid: 0e049b992b7475e4193c1f29cd843a17,
     type: 3}
   projectileHitParticle: {fileID: 6559112695356999935, guid: f2275f63ad46fce4f88e6d2aa35192c2,
