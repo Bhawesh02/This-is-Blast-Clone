@@ -44,7 +44,7 @@ MonoBehaviour:
   shooterScaleUpEase: 27
   shooterMoveSpeed: 5
   shooterMoveEase: 4
-  shooterWaitingStateYIncrement: 0.2
+  shooterWaitingStateYIncrement: 0.5
   shooterFireDelay: 0.1
   projectTravleSpeed: 20
   projectilePrefab: {fileID: 959821840508261199, guid: 0e049b992b7475e4193c1f29cd843a17,
