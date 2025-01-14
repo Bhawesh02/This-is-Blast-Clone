@@ -134,6 +134,9 @@ public class Brick : SlotElement
             .OnComplete(DestroyBrick);
         m_currentBrickStrength--;
         GameplayEvents.SendOnBrickDestroyed();
+        ParticleSystem hitParticel = ProjectileSpawner.Instance.GetProjectileHitParticle();
+        hitParticel.transform.position = projectile.transform.position;
+        hitParticel.Play();
         ProjectileSpawner.Instance.ReturnProjectile(projectile);
     }
 

@@ -25,7 +25,7 @@ public class ShooterShootingState : ShooterState
     
     private IEnumerator ShootBrick()
     {
-        WaitForSeconds projectileFireDelayWait = new WaitForSeconds(GameConfig.Instance.projectileFireDelay);
+        WaitForSeconds projectileFireDelayWait = new WaitForSeconds(GameConfig.Instance.shooterFireDelay);
         while (m_projectileCount > 0)
         {
             m_bricksToShootAt.Clear();

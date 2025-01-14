@@ -34,9 +34,9 @@ MonoBehaviour:
   brickElementData: {fileID: 11400000, guid: af0aaf3876b97304f94ca55abbde5f17, type: 2}
   brickScaleUpDuration: 0.5
   brickScaleUpEase: 25
-  brickScaleDownDuration: 0.1
-  brickScaleDownEase: 30
-  brickMoveDownDuration: 0.05
+  brickScaleDownDuration: 0.15
+  brickScaleDownEase: 2
+  brickMoveDownDuration: 0.1
   brickMoveDownEase: 4
   brickDestroyedHaptic: 0
   shooterElementData: {fileID: 11400000, guid: dfa4ab92b43170a42adbcfd45c3df7ec, type: 2}
@@ -45,7 +45,9 @@ MonoBehaviour:
   shooterMoveSpeed: 5
   shooterMoveEase: 4
   shooterWaitingStateYIncrement: 0.2
-  projectileFireDelay: 0.1
+  shooterFireDelay: 0.1
   projectTravleSpeed: 20
   projectilePrefab: {fileID: 959821840508261199, guid: 0e049b992b7475e4193c1f29cd843a17,
+    type: 3}
+  projectileHitParticle: {fileID: 6559112695356999935, guid: f2275f63ad46fce4f88e6d2aa35192c2,
     type: 3}

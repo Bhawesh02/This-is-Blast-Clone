@@ -123,7 +123,7 @@ public class Shooter : SlotElement
     {
         point.y = transform.position.y;
         Quaternion rotation = Quaternion.LookRotation(point - transform.position, Vector3.up);
-        transform.DORotateQuaternion(rotation, m_gameConfig.projectileFireDelay);
+        transform.DORotateQuaternion(rotation, m_gameConfig.shooterFireDelay);
     }
     
     public void UpdateProjectileCount(int projectileCount)

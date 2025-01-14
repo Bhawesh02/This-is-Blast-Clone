@@ -26,29 +26,30 @@ public class GameConfig : GenericConfig<GameConfig>
     public float brickScaleUpDuration;
     public Ease brickScaleUpEase = Ease.InBack;
 
-    [Range(0, 0.1f)]
+    [Range(0, 0.5f)]
     public float brickScaleDownDuration;
     public Ease brickScaleDownEase = Ease.Linear;
     
     [Range(0, 0.1f)]
     public float brickMoveDownDuration;
     public Ease brickMoveDownEase = Ease.Linear;
-
     public HapticType brickDestroyedHaptic;
     
     [Header("Shooter")]
     public ShooterElementData shooterElementData;
-    
     [Range(0, 1f)]
     public float shooterScaleUpDuration = 0.5f;
     public Ease shooterScaleUpEase = Ease.InBack;
-    
     public float shooterMoveSpeed = 5f;
     public Ease shooterMoveEase = Ease.Linear;
     public float shooterWaitingStateYIncrement = 0.2f;
-    public float projectileFireDelay = 0.1f;
+    [Range(0, 1f)]
+    public float shooterFireDelay = 0.1f;
+    
+    [Header("Shooter")]
     public float projectTravleSpeed = 6f;
     public Projectile projectilePrefab;
+    public ParticleSystem projectileHitParticle;
 
     public Material GetBrickMaterial(BrickColors brickColor)
     {

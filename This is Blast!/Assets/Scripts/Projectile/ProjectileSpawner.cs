@@ -2,17 +2,23 @@
 
 public class ProjectileSpawner : MonoSingleton<ProjectileSpawner>
 {
-    private Projectile m_projectile;
+    private Projectile m_projectilePrefab;
     private ProjectilePool m_projectilePool;
+    private ParticleSystem m_projectileHitParticle;
+    private ParticlePool m_projectileHitParticlePool;
+    
+    
     protected override void Init()
     {
-        m_projectile = GameConfig.Instance.projectilePrefab;
+        m_projectilePrefab = GameConfig.Instance.projectilePrefab;
+        m_projectileHitParticle = GameConfig.Instance.projectileHitParticle;
         MakePool();
     }
 
     private void MakePool()
     {
-        m_projectilePool = new ProjectilePool(m_projectile,this);
+        m_projectilePool = new ProjectilePool(m_projectilePrefab,this);
+        m_projectileHitParticlePool = new ParticlePool(m_projectileHitParticle, transform);
     }
 
     public Projectile GetProjectile()
@@ -25,8 +31,30 @@ public class ProjectileSpawner : MonoSingleton<ProjectileSpawner>
     public void ReturnProjectile(Projectile projectile)
     {
         projectile.OnReturnToPool();
-        projectile.gameObject.SetActive(false);
-        projectile.transform.localPosition = Vector3.zero;
+        OnGameObjectReturnToPool(projectile.gameObject);
         m_projectilePool.ReturnItem(projectile);
+    }
+
+    public ParticleSystem GetProjectileHitParticle()
+    {
+        ParticleSystem hitParticleSystem = m_projectileHitParticlePool.GetItem();
+        hitParticleSystem.gameObject.SetActive(true);
+        StopCoroutine(CoroutineUtils.Delay(hitParticleSystem.main.duration, () =>
+        {
+            ReturnProjectileHitParticle(hitParticleSystem);
+        }));
+        return hitParticleSystem;
+    }
+
+    public void ReturnProjectileHitParticle(ParticleSystem particleSystem)
+    {
+        OnGameObjectReturnToPool(particleSystem.gameObject);
+        m_projectileHitParticlePool.ReturnItem(particleSystem);
+    }
+    
+    private static void OnGameObjectReturnToPool(GameObject gameObject)
+    {
+        gameObject.SetActive(false);
+        gameObject.transform.localPosition = Vector3.zero;
     }
 }
