@@ -27,7 +27,7 @@ public class GameManager : MonoSingleton<GameManager>
         QualitySettings.vSyncCount = 0;
         Vector2 refrenceResolution = GameConfig.Instance.refrenceResolution;
         float referenceAspectRatio = refrenceResolution.x / refrenceResolution.y;
-        m_mainCamera.orthographicSize *= referenceAspectRatio / m_mainCamera.aspect;
+        m_mainCamera.fieldOfView *= referenceAspectRatio / m_mainCamera.aspect;
     }
 
     private void OnDestroy()

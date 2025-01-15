@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementPrefab: {fileID: 953007437325188470, guid: 8a00ea682de96ce4c89cc7f96461a9f2,
     type: 3}
-  positionOnSlot: {x: 0, y: 0.3, z: 0}
+  positionOnSlot: {x: 0, y: 0.5, z: 0}
   modleYIncrement: 0.5
