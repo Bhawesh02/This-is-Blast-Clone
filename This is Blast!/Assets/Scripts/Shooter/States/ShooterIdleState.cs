@@ -24,6 +24,11 @@ public class ShooterIdleState : ShooterState
         GameplayEvents.OnShooterSlotEmpty -= HandelOnShooterSlotEmpty;
     }
 
+    public override void OnDestroyed()
+    {
+        GameplayEvents.OnShooterSlotEmpty -= HandelOnShooterSlotEmpty;
+    }
+
     public override void OnUpdate()
     {
         //TODO

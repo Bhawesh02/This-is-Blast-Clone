@@ -18,14 +18,19 @@ public class ShooterWaitingState : ShooterState
 
     public override void OnExit()
     {
-        //TODO  
+        //Nothing 
     }
 
     public override void OnUpdate()
     {
-        //TODO  
+        //Nothing 
     }
 
+    public override void OnDestroyed()
+    {
+        //Norhing
+    }
+    
     public override void OnClick()
     {
         Transform shootingSlotTransform = GameManager.Instance.GetNextShooterShootingSlot(m_shooter);

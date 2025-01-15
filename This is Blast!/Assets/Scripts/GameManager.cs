@@ -40,6 +40,7 @@ public class GameManager : MonoSingleton<GameManager>
     private void HandleOnLevelSpawned(LevelData levelData)
     {
         m_numberOfBricksInLevel = levelData.GetTotalNumberOfBricks();
+        m_isLevelFailed = false;
     }
 
     private void HandleOnBrickDestroyed()

@@ -7,6 +7,8 @@ public class ShooterShootingState : ShooterState
     private List<Brick> m_bricksToShootAt = new();
     private Coroutine m_shootingCoroutine;
     private int m_projectileCount;
+    private bool m_canShoot = true;
+    
     public ShooterShootingState(Shooter shooter, ShooterStates shooterState) : base(shooter, shooterState)
     {
     }
@@ -15,19 +17,39 @@ public class ShooterShootingState : ShooterState
     {
         m_projectileCount = m_shooter.ShooterProjectileCount;
         m_shootingCoroutine = m_shooter.StartCoroutine(ShootBrick());
+        m_canShoot = true;
+        GameplayEvents.OnLevelCompleted += HandleOnLevelOver;
+        GameplayEvents.OnLevelFailed += HandleOnLevelOver;
     }
 
     public override void OnExit()
     {
         m_shooter.StopCoroutine(m_shootingCoroutine);
         GameplayEvents.SendOnShooterShootingStateExit(m_shooter);
+        GameplayEvents.OnLevelCompleted -= HandleOnLevelOver;
+        GameplayEvents.OnLevelFailed -= HandleOnLevelOver;
     }
     
+    
+    private void HandleOnLevelOver()
+    {
+        m_canShoot = false;
+    }
+
+    public override void OnDestroyed()
+    {
+        //Nothing
+    }
+
     private IEnumerator ShootBrick()
     {
         WaitForSeconds projectileFireDelayWait = new WaitForSeconds(GameConfig.Instance.shooterFireDelay);
         while (m_projectileCount > 0)
         {
+            if (!m_canShoot)
+            {
+                yield break;
+            }
             m_bricksToShootAt.Clear();
             foreach (Brick brick in GameManager.Instance.GetBricksToShootAt())
             {

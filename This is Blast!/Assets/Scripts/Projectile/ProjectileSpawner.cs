@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class ProjectileSpawner : MonoSingleton<ProjectileSpawner>
 {
@@ -6,13 +8,21 @@ public class ProjectileSpawner : MonoSingleton<ProjectileSpawner>
     private ProjectilePool m_projectilePool;
     private ParticleSystem m_projectileHitParticle;
     private ParticlePool m_projectileHitParticlePool;
-    
+    private List<Projectile> m_activeProjectiles = new() ;
     
     protected override void Init()
     {
+        GameplayEvents.OnLevelCompleted += ReturnAllProjectileToPoll;
+        GameplayEvents.OnLevelFailed += ReturnAllProjectileToPoll;
         m_projectilePrefab = GameConfig.Instance.projectilePrefab;
         m_projectileHitParticle = GameConfig.Instance.projectileHitParticle;
         MakePool();
+    }
+
+    private void OnDestroy()
+    {
+        GameplayEvents.OnLevelCompleted -= ReturnAllProjectileToPoll;
+        GameplayEvents.OnLevelFailed -= ReturnAllProjectileToPoll;
     }
 
     private void MakePool()
@@ -25,6 +35,7 @@ public class ProjectileSpawner : MonoSingleton<ProjectileSpawner>
     {
        Projectile projectile = m_projectilePool.GetItem();
        projectile.gameObject.SetActive(true);
+       m_activeProjectiles.Add(projectile);
        return projectile;
     }
 
@@ -33,6 +44,7 @@ public class ProjectileSpawner : MonoSingleton<ProjectileSpawner>
         projectile.OnReturnToPool();
         OnGameObjectReturnToPool(projectile.gameObject);
         m_projectilePool.ReturnItem(projectile);
+        m_activeProjectiles.Remove(projectile);
     }
 
     public ParticleSystem GetProjectileHitParticle()
@@ -52,9 +64,19 @@ public class ProjectileSpawner : MonoSingleton<ProjectileSpawner>
         m_projectileHitParticlePool.ReturnItem(particleSystem);
     }
     
-    private static void OnGameObjectReturnToPool(GameObject gameObject)
+    private void OnGameObjectReturnToPool(GameObject gameObject)
     {
         gameObject.SetActive(false);
         gameObject.transform.localPosition = Vector3.zero;
+    }
+
+    private void ReturnAllProjectileToPoll()
+    {
+        List<Projectile> activeProjectile = new(m_activeProjectiles);
+        foreach (Projectile projectile in activeProjectile)
+        {
+            m_activeProjectiles.Remove(projectile);
+        }
+        m_activeProjectiles.Clear();
     }
 }

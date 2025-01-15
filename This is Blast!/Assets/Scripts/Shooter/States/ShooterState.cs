@@ -13,4 +13,6 @@
     public abstract void OnExit();
     public abstract void OnUpdate();
     public abstract void OnClick();
+
+    public abstract void OnDestroyed();
 }

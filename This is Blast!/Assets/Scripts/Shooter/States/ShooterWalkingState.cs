@@ -32,7 +32,12 @@ public class ShooterWalkingState : ShooterState
     {
         m_shooter.transform.DORotate(Vector3.zero, ROATION_RESET_DURATION);
     }
-
+    
+    public override void OnDestroyed()
+    {
+        //Norhing
+    }
+    
     public override void OnUpdate()
     {
         m_shooter.LookAtPoint(m_newPosition);

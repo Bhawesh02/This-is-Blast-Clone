@@ -98,6 +98,10 @@ public class Shooter : SlotElement
         m_occupiedSlot.EmptySlot();
         nextSlot.OccupySlot(this);
         m_occupiedSlot = nextSlot;
+        if (!transform)
+        {
+            Debug.Break();
+        }
         Vector3 newPosition = nextSlot.transform.position + transform.localPosition;
         transform.SetParent(nextSlot.transform);
         MoveToPosition(newPosition, 
@@ -143,4 +147,12 @@ public class Shooter : SlotElement
         //Nothing
     }
 
+
+    private void OnDestroy()
+    {
+        foreach (KeyValuePair<ShooterStates,ShooterState> shooterState in m_shooterStateMap)
+        {
+            shooterState.Value.OnDestroyed();
+        }
+    }
 }
