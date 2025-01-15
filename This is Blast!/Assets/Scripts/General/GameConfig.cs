@@ -13,8 +13,9 @@ public class GameConfig : GenericConfig<GameConfig>
         public BrickColors brickColor;
         public Material brickMaterial;
     }
-    
-    [Header("Level")]
+
+    [Header("Level")] 
+    public Vector2 refrenceResolution;
     public List<LevelData> levelDatas;
     public Transform shooterShootingSlotPrefab;
     public float levelCompletedScreenShowDelay = 2f;

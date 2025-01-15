@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea306ebbd24983b515c8368669b1a2, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
+  refrenceResolution: {x: 1440, y: 2560}
   levelDatas:
   - {fileID: 11400000, guid: 679ca6de17a48344d8c412e639f8dd8f, type: 2}
   - {fileID: 11400000, guid: ab7b9735f53780341a371c80bed6176f, type: 2}
@@ -20,6 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e40f6bc398330da45af4e7b8b6b92e41, type: 2}
   shooterShootingSlotPrefab: {fileID: 4114310673832767317, guid: f1e4d3929003270408a4032c0f1f8850,
     type: 3}
+  levelCompletedScreenShowDelay: 2
   m_brickColorMaterialData:
   - brickColor: 0
     brickMaterial: {fileID: 2100000, guid: 99cdbf7a8c301884b9869bd558741679, type: 2}

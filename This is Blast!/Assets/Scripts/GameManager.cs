@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    [SerializeField] private Camera m_mainCamera;
     [SerializeField] private ShooterShootingSlots m_shooterShootingSlots;
     [SerializeField] private MyGrid m_brickSpawnGrid;
     [SerializeField] private Transform m_noProjectileLeftShooterHolder;
@@ -14,9 +15,20 @@ public class GameManager : MonoSingleton<GameManager>
     
     protected override void Init()
     {
+        SetupGame();
         GameplayEvents.OnLevelSpawned += HandleOnLevelSpawned;
         GameplayEvents.OnBrickDestroyed += HandleOnBrickDestroyed;
         GameplayEvents.OnNoShooterHasBrickToShootAt += CheckForLevelFail;
+    }
+
+    private void SetupGame()
+    {
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
+        Vector2 refrenceResolution = GameConfig.Instance.refrenceResolution;
+        float referenceAspectRatio = refrenceResolution.x / refrenceResolution.y;
+        Debug.Log($"referenceAspectRatio : {referenceAspectRatio}, currentaspect : {m_mainCamera.aspect}");
+        m_mainCamera.orthographicSize *= referenceAspectRatio / m_mainCamera.aspect;
     }
 
     private void OnDestroy()

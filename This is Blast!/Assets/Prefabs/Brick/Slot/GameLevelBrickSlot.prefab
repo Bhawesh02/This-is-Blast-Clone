@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7602215939867487617}
   - component: {fileID: 6981244477603002866}
   - component: {fileID: 5998171651061843861}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 110708146566863865}
   - component: {fileID: 1408623000628898821}
   - component: {fileID: 3255999424677640118}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4389079365882408216}
   - component: {fileID: 1930383711329652333}
   - component: {fileID: 721580534666990690}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameLevelBrickSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
