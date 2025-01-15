@@ -9,11 +9,13 @@ public class MyGrid : MonoBehaviour
     [SerializeField] private GridData m_gridData;
     
     private List<Slot> m_spawnedSlots = new();
+    private Vector3 m_originalPosition;
     
     public Vector2Int GridSize => m_gridData.gridSize;
     public int Columns => GridSize.x;
     public int Rows => GridSize.y;
     public List<Slot> Slots => m_spawnedSlots;
+    
     
     public void OverrideGridSize(Vector2Int newGridSize)
     {
@@ -27,15 +29,15 @@ public class MyGrid : MonoBehaviour
     
     public void SpawnGrid()
     {
+        m_originalPosition = transform.position;
         ClearGrid();
-        Vector3 currentPosition = transform.position;
         Vector3 slotSpawnPosition;
         Slot newSlot;
         for (int rowIndex = 0; rowIndex < Rows; rowIndex++)
         {
             for (int columnIndex = 0; columnIndex < Columns; columnIndex++)
             {
-                slotSpawnPosition = currentPosition + GetPostionIncrementBasedOnAxis(rowIndex, columnIndex);
+                slotSpawnPosition = m_originalPosition + GetPostionIncrementBasedOnAxis(rowIndex, columnIndex);
                 newSlot = Instantiate(m_gridData.slotPrefab, slotSpawnPosition, Quaternion.identity, transform);
                 newSlot.Config(new(columnIndex, rowIndex), this);
                 m_spawnedSlots.Add(newSlot);

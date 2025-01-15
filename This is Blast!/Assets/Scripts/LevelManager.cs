@@ -128,6 +128,13 @@ public class LevelManager : MonoSingleton<LevelManager>
                 shooterSlot.SpawnShooter(shooterConfigData);
             }
         }
+
+        if (m_shooterGrid.Rows > 3)
+        {
+            Vector3 newPosition = m_shooterGrid.transform.position;
+            newPosition.z -= m_shooterGrid.Rows - 3;
+            m_shooterGrid.transform.position = newPosition;
+        }
     }
     
     
