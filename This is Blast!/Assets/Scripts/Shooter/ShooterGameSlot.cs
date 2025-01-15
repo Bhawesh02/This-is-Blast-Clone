@@ -14,6 +14,7 @@ public class ShooterGameSlot : Slot
     {
         Shooter shooter = (Shooter)Instantiate(m_shooterElementData.elementPrefab, transform);
         shooter.Config(shooterConfigData, m_shooterElementData, this, m_grid);
+        OccupySlot(shooter);
     }
 
     public override void EmptySlot()
@@ -24,7 +25,10 @@ public class ShooterGameSlot : Slot
 
     public override void HandleClick()
     {
-        //Nothing
+        if (m_isOccupied)
+        {
+            m_slotElement.HandleClick();
+        }
     }
 
     public override void HandleDrag()
